@@ -13,7 +13,7 @@
       $scope.sortBy = searchOptions.sortBy || 'LEVEL';
       $scope.pageNumber = searchOptions.pageNumber || 0;
 
-      $scope.guildData = Guild.query({guildId: $routeParams.guildId, serverId: $routeParams.serverId, guildKey: $routeParams.guildKey}, function (guildData) {
+      $scope.guildData = Guild.query({guildId: $routeParams.guildId}, function (guildData) {
 
         $scope.getRoster(guildData.guild_web_id, $scope.pageNumber, $scope.sortBy);
       });
