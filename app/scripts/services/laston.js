@@ -2,8 +2,8 @@
   'use strict';
 
   angular.module('bsDaocHeraldApp')
-    .factory('Guild', function ($resource, BASE_URL) {
-      return $resource(BASE_URL + '/guild/info/:guildId', {}, {
+    .factory('LastOn', function ($resource, BASE_URL) {
+      return $resource(BASE_URL + '/data/laston', {}, {
         query: {method: 'GET', params: {}, isArray: false}
       });
     });

@@ -55,7 +55,7 @@
                     <tbody>
                     <tr data-ng-repeat="charData in rosterData.roster">
                         <td>
-                            <a href="#/character/{{clusterId}}/{{charData.server_id}}/{{charData.character_id}}">{{charData.name}}</a>
+                            <a href="#/character/{{charData.character_web_id}}">{{charData.name}}</a>
                         </td>
                         <td>
                             {{charData.level}}/{{charData.race}}/{{charData.class_name}}
@@ -67,7 +67,7 @@
                             {{charData.realm_points | number}}
                         </td>
                         <td>
-                            {{charData.last_on_range}}
+                            {{charData.laston}}
                         </td>
                     </tr>
                     </tbody>
@@ -103,7 +103,7 @@
                     <tbody data-ng-if="showAlliance">
                         <tr>
                             <td>
-                                <a href="#/guild/{{guildData.alliance.alliance_leader.server_id}}/{{guildData.alliance.alliance_leader.guild_id}}/{{guildData.alliance.alliance_leader.guild_key}}">{{guildData.alliance.alliance_leader.name}}</a>
+                                <a href="#/guild/{{guildData.alliance.alliance_leader.guild_web_id}}">{{guildData.alliance.alliance_leader.name}}</a>
                                 [Leader]
                             </td>
                             <td class='herald_total'>
@@ -112,7 +112,7 @@
                         </tr>
                         <tr data-ng-repeat="guild in guildData.alliance.alliance_members">
                             <td>
-                                <a href="#/guild/{{guild.server_id}}/{{guild.guild_id}}/{{guild.guild_key}}">{{guild.name}}</a>
+                                <a href="#/guild/{{guild.guild_web_id}}">{{guild.name}}</a>
                             </td>
                             <td class='herald_total'>
                                 {{guild.realm_points | number}}
@@ -140,7 +140,7 @@
                     <tbody data-ng-if="leaderboard.show">
                     <tr data-ng-repeat="char in leaderboard.entries">
                         <td>
-                            <a href="#/character/{{char.character_id}}">{{char.name}}</a> {{char.level}} {{char.class_name}}
+                            <a href="#/character/{{char.character_web_id}}">{{char.name}}</a> {{char.level}} {{char.class_name}}
                         </td>
                         <td class='herald_total'>
                             {{char.value | number}}

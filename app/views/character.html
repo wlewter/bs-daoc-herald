@@ -10,13 +10,14 @@
 <div class="row">
     <div class="col-sm-12">
         <p>
-            Member of <a href="#/guild/{{charData.guild_info.guild_server_id}}/{{charData.guild_info.guild_id}}/{{charData.guild_info.guild_key}}"><strong>{{charData.guild_info.guild_name}}</strong></a><br />
+            Member of <span data-ng-if="charData.guild_info"><a href="#/guild/{{charData.guild_info.guild_web_id}}"><strong>{{charData.guild_info.guild_name}}</strong></a></span>
+            <span data-ng-if="!charData.guild_info"><strong>None</strong></span><br />
             Level {{charData.level}} {{charData.race}} <strong>{{charData.class_name}}</strong><br />
-            Master Level {{charData.master_level.level}} ({{charData.master_level.path}})<br />
+            <span data-ng-if="charData.master_level">Master Level {{charData.master_level.level}} ({{charData.master_level.path}})<br /></span>
+            <span data-ng-if="!charData.master_level">Master Level 0<br /></span>
             Realm Rank {{realmRank}} - {{rrTitle}}<br/>
-            {{realm}}, {{charData.server_id}}<br />
-            Last seen <strong>{{charData.last_on_range}}</strong>
-
+            {{realm}}, {{charData.server_name}}<br />
+            Last seen <strong>{{laston}}</strong>
         </p>
     </div>
 </div>

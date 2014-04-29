@@ -23,11 +23,11 @@
           templateUrl: 'views/search.html',
           controller: 'SearchCtrl'
         })
-        .when('/guild/:serverId/:guildId/:guildKey', {
+        .when('/guild/:guildId', {
           templateUrl: 'views/guild.html',
           controller: 'GuildCtrl'
         })
-        .when('/character/:clusterId/:serverId/:charId', {
+        .when('/character/:charId', {
           templateUrl: 'views/character.html',
           controller: 'CharacterCtrl'
         })
@@ -35,7 +35,7 @@
           redirectTo: '/search'
         });
     })
-    .constant('BASE_URL', 'http://web_dev1.broadsword.com:8080')
+    .constant('BASE_URL', 'http://web_dev1.broadsword.com:8090')
     .constant('REALM', ['Unknown', 'Albion', 'Midgard', 'Hibernia']);
 
 }());

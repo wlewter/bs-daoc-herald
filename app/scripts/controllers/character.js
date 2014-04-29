@@ -2,12 +2,16 @@
   'use strict';
 
   angular.module('bsDaocHeraldApp')
-    .controller('CharacterCtrl', function ($scope, $routeParams, Character, REALM, RealmRanks) {
+    .controller('CharacterCtrl', function ($scope, $routeParams, Character, REALM, RealmRanks, LastOn) {
 
       $scope.completed = false;
 
-      $scope.charData = Character.query({charId: $routeParams.charId, clusterId: $routeParams.clusterId, serverId: $routeParams.serverId}, function (charData) {
+      $scope.charData = Character.query({charId: $routeParams.charId}, function (charData) {
         $scope.realm = REALM[charData.realm];
+
+        LastOn.query(function(laston) {
+          $scope.laston = laston[charData.last_on_range];
+        });
 
         RealmRanks.query({}, function (realmRanks) {
           var rankObj = _.find(realmRanks, function(realmRank) {

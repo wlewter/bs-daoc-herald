@@ -7,7 +7,7 @@
             <div class="form-group">
                 <input type="text" class="form-control input-sm" placeholder="Character Name" id="charName" data-ng-model="charName" data-ng-change="clearGuild()" />
                 <input type="text" class="form-control input-sm" placeholder="Guild Name" id="guildName" data-ng-model="guildName" data-ng-change="clearChar()"/>
-                <select class="form-control input-sm" data-ng-model="cluster" data-ng-options="c.name for c in clusters">
+                <select class="form-control input-sm" data-ng-model="cluster" data-ng-options="c.cluster_name for c in clusters">
                     <option value="">Select a server</option>
                 </select>
                 <button data-ng-click="search()" class="btn btn-primary">Search</button>
@@ -30,11 +30,11 @@
             </tr>
         </thead>
         <tbody>
-            <tr data-ng-repeat="result in results">
+            <tr data-ng-repeat="result in chars.results">
                 <td>{{$index + 1}})</td>
-                <td><a href="#/character/{{cluster.id}}/{{result.server_id}}/{{result.character_id}}">{{result.name}}</a></td>
-                <td>{{result.server_id}}</td>
-                <td><a href="#/guild/{{result.guild_info.guild_server_id}}/{{result.guild_info.guild_id}}/{{result.guild_info.guild_key}}">{{result.guild_info.guild_name}}</a></td>
+                <td><a href="#/character/{{result.character_web_id}}">{{result.name}}</a></td>
+                <td>{{result.server_name}}</td>
+                <td><a href="#/guild/{{result.guild_info.guild_web_id}}">{{result.guild_info.guild_name}}</a></td>
                 <td>{{result.level}}/{{result.race}}/{{result.class_name}}</td>
                 <td>{{result.realm_points | number: 0 }}</td>
             </tr>
@@ -51,10 +51,10 @@
         </tr>
         </thead>
         <tbody>
-        <tr data-ng-repeat="result in results">
+        <tr data-ng-repeat="result in guilds.results">
             <td>{{$index + 1}})</td>
-            <td><a href="#/guild/{{result.server_id}}/{{result.guild_id}}/{{result.guild_key}}">{{result.name}}</a></td>
-            <td>{{result.server_id}}</td>
+            <td><a href="#/guild/{{result.guild_web_id}}">{{result.name}}</a></td>
+            <td>{{result.server_name}}</td>
             <td>*</td>
         </tr>
         </tbody>
