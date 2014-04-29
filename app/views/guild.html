@@ -1,0 +1,158 @@
+<div data-ng-show="completed">
+
+<div class="row">
+    <div class="col-sm-12">
+        <h1>{{guildData.name}}</h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <h3><em>{{realm}}</em></h3>
+        <strong>Contact:</strong> <a href="mailto:{{guildData.email}}">{{guildData.email}}</a><br />
+        <strong>Website:</strong> <a href="{{guildData.webpage}}">{{guildData.webpage}}</a><br />
+        <strong>Guild House:</strong> Lot# {{guildData.owned_housing_lot}}<br />
+        <!-- Membership: {{guildData.members}} active characters<br /> -->
+        <strong>Guild Realm Points:</strong> {{guildData.realm_war_overall.realm_points | number}}<br />
+        <strong>Outpost Claimed:</strong> {{guildData.claimed_outpost}}
+    </div>
+</div>
+
+<br/>
+
+
+<form class="form-horizontal" role="form">
+    <div class="form-group">
+        <label for="sortBy" class="control-label col-sm-2">Sort By:</label>
+        <div class="col-sm-2">
+            <select id="sortBy" class="form-control input-sm" data-ng-model="sortBy" data-ng-change="sortByChange()">
+                <option value="LEVEL">Level</option>
+                <option value="CLASS">Class</option>
+                <option value="NAME">Name</option>
+                <option value="RANK">Guild Rank</option>
+                <option value="REALM_POINTS">Realm Points</option>
+            </select>
+        </div>
+    </div>
+</form>
+
+<div class="row">
+    <div class="col-sm-7">
+
+        <div class="row">
+            <div class="col-sm-12">
+
+                <table class="table table-condensed table-striped">
+                    <thead>
+                    <tr>
+                        <th>Player Name</th>
+                        <th>Information</th>
+                        <th>Guild Rank</th>
+                        <th>Realm Points</th>
+                        <th>Last Seen</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr data-ng-repeat="charData in rosterData.roster">
+                        <td>
+                            <a href="#/character/{{clusterId}}/{{charData.server_id}}/{{charData.character_id}}">{{charData.name}}</a>
+                        </td>
+                        <td>
+                            {{charData.level}}/{{charData.race}}/{{charData.class_name}}
+                        </td>
+                        <td>
+                            {{charData.guild_rank}}
+                        </td>
+                        <td>
+                            {{charData.realm_points | number}}
+                        </td>
+                        <td>
+                            {{charData.last_on_range}}
+                        </td>
+                    </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td align="left" colspan="3">
+                                <a data-ng-if="pageNumber > 0" class="toggle" data-ng-click="prevPage()">&lt;&lt; Prev</a>
+                            </td>
+                            <td align="right" colspan="2">
+                                <a data-ng-if="hasNext" class="toggle" data-ng-click="nextPage()">Next &gt;&gt;</a>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-sm-5">
+
+        <div class="row" data-ng-if="guildData.alliance">
+            <div class="col-sm-12">
+
+                <table class="table table-condensed table-striped">
+                    <thead>
+                    <tr class="toggle" data-ng-click="showAlliance = !showAlliance">
+                        <th>Alliance<br />
+                            <small><em>Click to toggle display</em></small>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody data-ng-if="showAlliance">
+                        <tr>
+                            <td>
+                                <a href="#/guild/{{guildData.alliance.alliance_leader.server_id}}/{{guildData.alliance.alliance_leader.guild_id}}/{{guildData.alliance.alliance_leader.guild_key}}">{{guildData.alliance.alliance_leader.name}}</a>
+                                [Leader]
+                            </td>
+                            <td class='herald_total'>
+                                {{guildData.alliance.alliance_leader.realm_points | number}}
+                            </td>
+                        </tr>
+                        <tr data-ng-repeat="guild in guildData.alliance.alliance_members">
+                            <td>
+                                <a href="#/guild/{{guild.server_id}}/{{guild.guild_id}}/{{guild.guild_key}}">{{guild.name}}</a>
+                            </td>
+                            <td class='herald_total'>
+                                {{guild.realm_points | number}}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+
+
+        <div class="row" data-ng-repeat="leaderboard in guildData.leaderboards">
+
+            <div class="col-sm-12" data-ng-init="leaderboard.show = true; leaderboard.type = (leaderboard.type==='REALM_POINTS_OVERALL') ? 'Top 10 RP Holders' : leaderboard.type">
+
+                <table class="table table-condensed table-striped">
+                    <thead>
+                    <tr class="toggle" data-ng-click="leaderboard.show = !leaderboard.show">
+                        <th>{{leaderboard.type}}<br />
+                            <small><em>Click to toggle display</em></small>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody data-ng-if="leaderboard.show">
+                    <tr data-ng-repeat="char in leaderboard.entries">
+                        <td>
+                            <a href="#/character/{{char.character_id}}">{{char.name}}</a> {{char.level}} {{char.class_name}}
+                        </td>
+                        <td class='herald_total'>
+                            {{char.value | number}}
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+</div>

@@ -1,0 +1,277 @@
+
+<div data-ng-show="completed">
+
+<div class="row">
+    <div class="col-sm-12">
+        <div><h1><strong>{{charData.name}}</strong></h1></div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <p>
+            Member of <a href="#/guild/{{charData.guild_info.guild_server_id}}/{{charData.guild_info.guild_id}}/{{charData.guild_info.guild_key}}"><strong>{{charData.guild_info.guild_name}}</strong></a><br />
+            Level {{charData.level}} {{charData.race}} <strong>{{charData.class_name}}</strong><br />
+            Master Level {{charData.master_level.level}} ({{charData.master_level.path}})<br />
+            Realm Rank {{realmRank}} - {{rrTitle}}<br/>
+            {{realm}}, {{charData.server_id}}<br />
+            Last seen <strong>{{charData.last_on_range}}</strong>
+
+        </p>
+    </div>
+</div>
+
+<div class="row">
+<div class="col-sm-7">
+
+    <table class="table table-condensed">
+        <thead>
+        <tr>
+            <th colspan='2'><strong>Realm vs Realm information</strong></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td colspan='2'>
+                <table>
+                    <colgroup>
+                        <col class="row_header" span="1" />
+                        <col span="1" />
+                        <col span="1" />
+                        <col span="1" />
+                    </colgroup>
+                    <thead>
+                    <tr>
+                        <th>&nbsp;</th>
+                        <th class='herald_total'>PvP Deaths</th>
+                        <th class='herald_total'>PvP Kills</th>
+                        <th class='herald_total'>Realm Points</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><strong>Lifetime</strong></td>
+                        <td class='herald_total'>{{charData.realm_war_overall.total_deaths | number:0}}</td>
+                        <td class='herald_total'>{{charData.realm_war_overall.total_kills | number:0}}</td>
+                        <td class='herald_total'>{{charData.realm_war_overall.realm_points | number:0}}</td>
+                    </tr>
+                    <!--
+                    <tr>
+                        <td><strong>Week</strong></td>
+                        <td class='herald_total'>{{charData.realm_war_weekly.total_deaths | number:0}}</td>
+                        <td class='herald_total'>{{charData.realm_war_weekly.total_kills | number:0}}</td>
+                        <td class='herald_total'>{{charData.realm_war_weekly.realm_points | number:0}}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Yesterday</strong></td>
+                        <td class='herald_total'>{{charData.realm_war_yesterday.total_deaths | number:0}}</td>
+                        <td class='herald_total'>{{charData.realm_war_yesterday.total_kills | number:0}}</td>
+                        <td class='herald_total'>{{charData.realm_war_yesterday.realm_points | number:0}}</td>
+                    </tr>
+                    -->
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+        <!--
+        <tr>
+            <td>
+                <strong>I Remain Standing Score: </strong><br>
+                &nbsp; &nbsp; <small><em>(Number of RP earned last week, divided by number of deaths)</em></small>
+            </td>
+            <td  class='herald_total'>{{irs | number:2}}</td>
+        </tr>
+        <tr>
+            <td colspan='2'>
+                <strong>Detailed RvR statistics</strong>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <strong>Number of kills:</strong>
+            </td>
+            <td  class='herald_total'>{{charData.data[0].kills1 + charData.data[0].kills2}}</td>
+        </tr>
+        <tr>
+            <td>
+                &nbsp; &nbsp; {{charData.data[0].kills1_realm}}
+            </td>
+            <td  class='herald_total'>{{charData.data[0].kills1 | number:0}}</td>
+        </tr>
+        <tr>
+            <td>
+                &nbsp; &nbsp; {{charData.data[0].kills2_realm}}
+            </td>
+            <td  class='herald_total'>{{charData.data[0].kills2 | number:0}}</td>
+        </tr>
+        <tr>
+            <td>
+                <strong>Number of solo kills:</strong>
+            </td>
+            <td  class='herald_total'>{{charData.data[0].solo_kills | number:0}}</td>
+        </tr>
+        <tr>
+            <td>
+                <strong>Number of deathblows:</strong>
+            </td>
+            <td  class='herald_total'>{{totalDbs | number:0}}</td>
+        </tr>
+        <tr>
+            <td>
+                &nbsp; &nbsp; {{charData.data[0].db1_realm}}
+            </td>
+            <td  class='herald_total'>{{charData.data[0].db1 | number:0}}</td>
+        </tr>
+        <tr>
+            <td>
+                &nbsp; &nbsp; {{charData.data[0].db2_realm}}
+            </td>
+            <td  class='herald_total'>{{charData.data[0].db2 | number:0}}</td>
+        </tr>
+        <tr>
+            <td>
+                <strong>Number of relics taken:</strong>
+            </td>
+            <td  class='herald_total'>{{charData.data[0].relics | number:0}}</td>
+        </tr>
+        <tr>
+            <td>
+                <strong>Number of keeps taken:</strong>
+            </td>
+            <td  class='herald_total'>{{charData.data[0].keeps | number:0}}</td>
+        </tr>
+        <tr>
+            <td>
+                <strong>Number of keep lords slain:</strong>
+            </td>
+            <td  class='herald_total'>{{charData.data[0].lords | number:0}}</td>
+        </tr>
+        -->
+        </tbody>
+    </table>
+
+</div>
+
+<div class="col-sm-3">
+
+    <div>
+        <table class="table table-condensed">
+            <thead>
+            <tr>
+                <th colspan='2'>
+                    <strong>Tradeskill information</strong>
+                </th>
+            </tr>
+            </thead>
+            <!-- <tfoot>
+            <tr>
+                <td colspan="2">
+                    <small><em>NOTE: You may hide this information on the Herald display by typing /webdisplay trades in-game</em></small>
+                </td>
+            </tr>
+            </tfoot> -->
+            <tbody>
+            <tr>
+                <td>
+                    <strong>Alchemy:</strong>
+                </td>
+                <td  class='herald_total'>{{charData.crafting.alchemy | number:0}}</td>
+            </tr>
+            <tr>
+                <td>
+                    <strong>Armorcraft:</strong>
+                </td>
+                <td  class='herald_total'>{{charData.crafting.armorcraft | number:0}}</td>
+            </tr>
+            <tr>
+                <td>
+                    <strong>Fletching:</strong>
+                </td>
+                <td  class='herald_total'>{{charData.crafting.fletching | number:0}}</td>
+            </tr>
+            <tr>
+                <td>
+                    <strong>Spellcraft:</strong>
+                </td>
+                <td  class='herald_total'>{{charData.crafting.spellcraft | number:0}}</td>
+            </tr>
+            <tr>
+                <td>
+                    <strong>Tailoring:</strong>
+                </td>
+                <td  class='herald_total'>{{charData.crafting.tailoring | number:0}}</td>
+            </tr>
+            <tr>
+                <td>
+                    <strong>Weaponcraft:</strong>
+                </td>
+                <td  class='herald_total'>{{charData.crafting.weaponcraft | number:0}}</td>
+            </tr>
+            <tr>
+                <td>
+                    <strong>Seigecraft:</strong>
+                </td>
+                <td  class='herald_total'>{{charData.crafting.siegecraft | number:0}}</td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+    <!-- <div>
+        <table class="table table-condensed">
+            <thead>
+            <tr>
+                <th colspan='2' class="nowrap">
+                    RvR Mission Statistics
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    <strong>Caravan missions won:</strong>
+                </td>
+                <td  class='herald_total'>{{charData.data[0].caravan | number:0}}</td>
+            </tr>
+            <tr>
+                <td>
+                    <strong>Scouting missions won:</strong>
+                </td>
+                <td  class='herald_total'>{{charData.data[0].scouting | number:0}}</td>
+            </tr>
+            <tr>
+                <td>
+                    <strong>Assassin missions won:</strong>
+                </td>
+                <td  class='herald_total'>{{charData.data[0].assassin | number:0}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div>
+        <table class="table table-condensed">
+            <thead>
+            <tr>
+                <th colspan='2'>
+                    Epic Monster Statistics
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    <strong>Dragons:</strong>
+                </td>
+                <td class='herald_total'>{{charData.data[0].dragons | number:0}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    -->
+</div>
+
+</div>
+
+</div>

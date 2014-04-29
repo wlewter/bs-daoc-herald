@@ -1,0 +1,66 @@
+<div data-ng-show="completed">
+
+<div class="row">
+
+    <div class="col-sm-4">
+        <form role="form">
+            <div class="form-group">
+                <input type="text" class="form-control input-sm" placeholder="Character Name" id="charName" data-ng-model="charName" data-ng-change="clearGuild()" />
+                <input type="text" class="form-control input-sm" placeholder="Guild Name" id="guildName" data-ng-model="guildName" data-ng-change="clearChar()"/>
+                <select class="form-control input-sm" data-ng-model="cluster" data-ng-options="c.name for c in clusters">
+                    <option value="">Select a server</option>
+                </select>
+                <button data-ng-click="search()" class="btn btn-primary">Search</button>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<div class="row" id="searchresults">
+    <table data-ng-if="type==='char'" class="table table-striped table-condensed">
+        <thead>
+            <tr>
+                <th>&nbsp;</th>
+                <th>Player Name</th>
+                <th>Server</th>
+                <th>Guild</th>
+                <th>Information</th>
+                <th>Realm Points</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr data-ng-repeat="result in results">
+                <td>{{$index + 1}})</td>
+                <td><a href="#/character/{{cluster.id}}/{{result.server_id}}/{{result.character_id}}">{{result.name}}</a></td>
+                <td>{{result.server_id}}</td>
+                <td><a href="#/guild/{{result.guild_info.guild_server_id}}/{{result.guild_info.guild_id}}/{{result.guild_info.guild_key}}">{{result.guild_info.guild_name}}</a></td>
+                <td>{{result.level}}/{{result.race}}/{{result.class_name}}</td>
+                <td>{{result.realm_points | number: 0 }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table data-ng-if="type==='guild'" class="table table-striped table-condensed">
+        <thead>
+        <tr>
+            <th>&nbsp;</th>
+            <th>Guild Name</th>
+            <th>Server</th>
+            <th>Emblem</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr data-ng-repeat="result in results">
+            <td>{{$index + 1}})</td>
+            <td><a href="#/guild/{{result.server_id}}/{{result.guild_id}}/{{result.guild_key}}">{{result.name}}</a></td>
+            <td>{{result.server_id}}</td>
+            <td>*</td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+
+
+</div>
