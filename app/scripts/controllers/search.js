@@ -7,43 +7,58 @@
       $scope.completed = false;
       $scope.charName = '';
       $scope.guildName = '';
+      $scope.type = '';
+      var MAX_ROWS_DISPLAYED = 150;
 
       $scope.clusters = Clusters.query( function(clusters) {
-        $scope.cluster = _.find(clusters, function( cluster ) {
-          return cluster.cluster_name == $routeParams.clusterId;
-        });
+        if( $routeParams.clusterId ) {
+          $scope.cluster = _.find(clusters, function (cluster) {
+            return cluster.cluster_name == $routeParams.clusterId;
+          });
+        }
       });
-
-      $scope.type = '';
 
       if ($location.path().indexOf('/search/g') >= 0) {
         $scope.guildName = $routeParams.searchStr;
         $scope.charName = '';
         $scope.type = 'guild';
-        $scope.guilds = Guildsearch.query({searchStr: $scope.guildName}, function() {
+        $scope.guilds = Guildsearch.query({searchStr: $scope.guildName}, function(guilds) {
+          if( guilds.results.length > MAX_ROWS_DISPLAYED ) {
+            guilds.results.splice( (guilds.results.length - MAX_ROWS_DISPLAYED) * -1, Number.MAX_VALUE);
+          }
           $scope.completed = true;
         });
 
       } else if ($location.path().indexOf('/search/c') >= 0) {
+
         $scope.charName = $routeParams.searchStr;
         $scope.guildName = '';
         $scope.type = 'char';
-        $scope.chars = Charsearch.query({searchStr: $scope.charName, clusterId: $routeParams.clusterId}, function() {
+        $scope.chars = Charsearch.query({searchStr: $scope.charName, clusterId: $routeParams.clusterId}, function(chars) {
+
+          if( chars.results.length > MAX_ROWS_DISPLAYED ) {
+            chars.results.splice( (chars.results.length - MAX_ROWS_DISPLAYED) * -1, Number.MAX_VALUE);
+          }
           $scope.completed = true;
         });
 
       }
 
-
-      $scope.search = function () {
+      $scope.searchChar = function () {
         if (!$scope.cluster || !$scope.cluster.cluster_name) {
           return;
         }
 
         if ( $scope.charName !== '' ) {
           $location.path('/search/c/' + $scope.cluster.cluster_name + '/' + $scope.charName);
-        } else if ( $scope.guildName !== '' ) {
-          $location.path('/search/g/' + $scope.cluster.cluster_name + '/' + $scope.guildName);
+        }
+      };
+
+
+      $scope.searchGuild = function () {
+
+        if ( $scope.guildName !== '' ) {
+          $location.path('/search/g/' + $scope.guildName);
         }
       };
 

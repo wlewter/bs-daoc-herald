@@ -19,7 +19,7 @@
           templateUrl: 'views/search.html',
           controller: 'SearchCtrl'
         })
-        .when('/search/g/:clusterId/:searchStr', {
+        .when('/search/g/:searchStr', {
           templateUrl: 'views/search.html',
           controller: 'SearchCtrl'
         })
