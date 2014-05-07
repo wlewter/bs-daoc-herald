@@ -1,6 +1,6 @@
 {
   "name": "bs-daoc-herald",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "dependencies": {
     "angular": "1.2.16",
     "jquery": "~1.11.0",
