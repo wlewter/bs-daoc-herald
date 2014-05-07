@@ -1,7 +1,7 @@
-#####Version 1.0.0
-
-##bs-daoc-herald
+bs-daoc-herald
 ==============
+Version 1.0.0
+
 get the code with:
 git clone
 
