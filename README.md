@@ -3,7 +3,7 @@ bs-daoc-herald
 Version 1.0.0
 
 get the code with:
-git clone
+>git clone
 
 install npm dependencies with:
 >npm install
@@ -16,3 +16,4 @@ run app locally with:
 
 build for distribution with:
 >grunt build
+
