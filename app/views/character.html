@@ -1,5 +1,149 @@
-
 <div data-ng-show="completed">
+
+<div id="main" class="main region grid16-16">
+<div id="main-inner" class="main-inner inner clearfix">
+
+    <!-- main group: width = grid_width - sidebar_first_width -->
+    <div id="main-group" class="main-group region nested grid16-16">
+        <div id="main-group-inner" class="main-group-inner inner">
+
+            <div class="content-cap-top">
+                <div class="content-cap-top-title">CHARACTER &amp; GUILD SEARCH</div>
+                <div class="search-inputs">
+                    <input type="text" name="char-name" class="char-name" placeholder="Character Name">
+                    <select>
+                        <option>Server</option>
+                        <option>Ywain</option>
+                    </select>
+                    <input type="submit" value="Search">
+
+                    <input type="text" name="guild-name" class="guild-name" placeholder="Guild Name">
+                    <input type="submit" value="Search">
+                </div>
+            </div>
+            <div class="content-mid">
+                <div class="content-main-top"></div>
+                <div class="content-main-mid">
+                    <div class="main-content">
+
+                        <div id="char-info">
+                            <div class="char-info-main">
+                                <h2>{{charData.name}}</h2>
+                                <h3>Level {{charData.level}} {{charData.race}} {{charData.class_name}}</h3>
+                                <p><strong>Realm Rank {{realmRank}}</strong> - {{rrTitle}}</p>
+                                <p><strong>Guild</strong> - <span data-ng-if="charData.guild_info"><a href="#/guild/{{charData.guild_info.guild_web_id}}"><strong>{{charData.guild_info.guild_name}}</strong></a></span>
+                                    <span data-ng-if="!charData.guild_info"><strong>None</strong></span></p>
+                            </div>
+                            <div class="char-info-level">
+                                <p>
+                                    <span data-ng-if="charData.master_level"><strong>Master Level {{charData.master_level.level}}</strong> - ({{charData.master_level.path}})</span>
+                                    <span data-ng-if="!charData.master_level"><strong>Master Level 0</strong></span>
+                                </p>
+                                <!--<p><strong>Champion Level 10</strong> - (Champion of the Realm)</p>-->
+                                <p><strong>{{realm}}</strong> - {{charData.server_name}}</p>
+                                <p><strong>Last seen</strong> - {{laston}}</p>
+                            </div>
+                            <div class="char-info-emblems">
+                                <img src="images/guild_emblem.jpg" alt="" />
+                                <img src="images/guild_emblem.jpg" alt="" />
+                                <img src="images/guild_emblem.jpg" alt="" />
+                            </div>
+                        </div>
+
+                        <div class="table-heading">
+                            REALM VS REALM STATS
+                        </div>
+
+                        <table>
+                            <tr class="heading-row">
+                                <td class="heading-row"></td>
+                                <td class="heading heading-row">PvP Deaths</td>
+                                <td class="heading heading-row">PvP Kills</td>
+                                <td class="heading heading-row">Realm Points</td>
+                                <td class="heading heading-row">IRS</td>
+                                <!--<td class="heading heading-row">Filler</td>
+                                <td class="heading heading-row">Filler</td>-->
+                            </tr>
+                            <tr class="number">
+                                <td>Lifetime</td>
+                                <td>{{charData.realm_war_overall.total_deaths | number:0}}</td>
+                                <td>{{charData.realm_war_overall.total_kills | number:0}}</td>
+                                <td>{{charData.realm_war_overall.realm_points | number:0}}</td>
+                                <td>{{charData.realm_war_overall.realm_points / charData.realm_war_overall.total_deaths | number:2}}</td>
+                                <!--<td>x,xxx</td>
+                                <td>x,xxx</td>-->
+                            </tr>
+                            <!--<tr>
+                                <td>Today</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0.00</td>
+                                <td>x,xxx</td>
+                                <td>x,xxx</td>
+                            </tr>
+                            <tr>
+                                <td>Week</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0.00</td>
+                                <td>x,xxx</td>
+                                <td>x,xxx</td>
+                            </tr>-->
+                        </table>
+
+                        <div class="table-heading">
+                            TRADESKILL INFO
+                        </div>
+
+                        <table>
+                            <tr class="heading-row">
+                                <td class="heading heading-row">Alchemy</td>
+                                <td class="heading heading-row">Armorcraft</td>
+                                <td class="heading heading-row">Fletching</td>
+                                <td class="heading heading-row">Spellcraft</td>
+                                <td class="heading heading-row">Tailor</td>
+                                <td class="heading heading-row">Weaponcraft</td>
+                                <td class="heading heading-row">Seigecraft</td>
+                            </tr>
+                            <tr class="number">
+                                <td>{{charData.crafting.alchemy | number:0}}</td>
+                                <td>{{charData.crafting.armorcraft | number:0}}</td>
+                                <td>{{charData.crafting.fletching | number:0}}</td>
+                                <td>{{charData.crafting.spellcraft | number:0}}</td>
+                                <td>{{charData.crafting.tailoring | number:0}}</td>
+                                <td>{{charData.crafting.weaponcraft | number:0}}</td>
+                                <td>{{charData.crafting.siegecraft | number:0}}</td>
+                            </tr>
+                        </table>
+
+                    </div>
+                </div>
+                <div class="content-main-bot"></div>
+            </div>
+            <div class="content-cap-bot"></div>
+
+        </div><!-- /main-group -->
+    </div><!-- /main-inner -->
+    </div>
+</div><!-- /main -->
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<div data-ng-show="completed">
 
 <div class="row">
     <div class="col-sm-12">
@@ -56,7 +200,7 @@
                         <td class='herald_total'>{{charData.realm_war_overall.total_kills | number:0}}</td>
                         <td class='herald_total'>{{charData.realm_war_overall.realm_points | number:0}}</td>
                     </tr>
-                    <!--
+
                     <tr>
                         <td><strong>Week</strong></td>
                         <td class='herald_total'>{{charData.realm_war_weekly.total_deaths | number:0}}</td>
@@ -69,12 +213,12 @@
                         <td class='herald_total'>{{charData.realm_war_yesterday.total_kills | number:0}}</td>
                         <td class='herald_total'>{{charData.realm_war_yesterday.realm_points | number:0}}</td>
                     </tr>
-                    -->
+
                     </tbody>
                 </table>
             </td>
         </tr>
-        <!--
+
         <tr>
             <td>
                 <strong>I Remain Standing Score: </strong><br>
@@ -147,7 +291,7 @@
             </td>
             <td  class='herald_total'>{{charData.data[0].lords | number:0}}</td>
         </tr>
-        -->
+
         </tbody>
     </table>
 
@@ -164,13 +308,13 @@
                 </th>
             </tr>
             </thead>
-            <!-- <tfoot>
+            <tfoot>
             <tr>
                 <td colspan="2">
                     <small><em>NOTE: You may hide this information on the Herald display by typing /webdisplay trades in-game</em></small>
                 </td>
             </tr>
-            </tfoot> -->
+            </tfoot>
             <tbody>
             <tr>
                 <td>
@@ -219,7 +363,7 @@
 
     </div>
 
-    <!-- <div>
+    <div>
         <table class="table table-condensed">
             <thead>
             <tr>
@@ -270,9 +414,9 @@
             </tbody>
         </table>
     </div>
-    -->
-</div>
 
 </div>
 
 </div>
+
+</div>-->

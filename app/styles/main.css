@@ -1,4 +1,314 @@
-body {
+@import url("http://www.darkageofcamelot.com/modules/system/system.base.css?n50kpq");
+@import url("http://www.darkageofcamelot.com/modules/system/system.menus.css?n50kpq");
+@import url("http://www.darkageofcamelot.com/modules/system/system.messages.css?n50kpq");
+@import url("http://www.darkageofcamelot.com/modules/system/system.theme.css?n50kpq");
+@import url("http://www.darkageofcamelot.com/sites/all/modules/date/date_api/date.css?n50kpq");
+@import url("http://www.darkageofcamelot.com/sites/all/modules/date/date_popup/themes/datepicker.1.7.css?n50kpq");
+@import url("http://www.darkageofcamelot.com/modules/field/theme/field.css?n50kpq");
+@import url("http://www.darkageofcamelot.com/modules/node/node.css?n50kpq");
+@import url("http://www.darkageofcamelot.com/modules/search/search.css?n50kpq");
+/*@import url("http://www.darkageofcamelot.com/modules/user/user.css?n50kpq");*/
+@import url("http://www.darkageofcamelot.com/sites/all/modules/views/css/views.css?n50kpq");
+@import url("http://www.darkageofcamelot.com/sites/all/modules/ckeditor/ckeditor.css?n50kpq");
+@import url("http://www.darkageofcamelot.com/sites/all/modules/ctools/css/ctools.css?n50kpq");
+@import url("http://www.darkageofcamelot.com/sites/all/libraries/superfish/css/superfish.css?n50kpq");
+@import url("http://www.darkageofcamelot.com/sites/all/libraries/superfish/css/superfish-vertical.css?n50kpq");
+@import url("http://www.darkageofcamelot.com/sites/all/libraries/superfish/css/superfish-navbar.css?n50kpq");
+@import url("http://www.darkageofcamelot.com/sites/all/modules/views_slideshow/views_slideshow.css?n50kpq");
+@import url("http://www.darkageofcamelot.com/sites/daoc/themes/fusion/fusion_core/css/fusion-style.css?n50kpq");
+@import url("http://www.darkageofcamelot.com/sites/daoc/themes/fusion/fusion_core/css/fusion-typography.css?n50kpq");
+@import url("http://www.darkageofcamelot.com/sites/daoc/themes/fusion/fusion_core/skins/core/fusion-core-skins.css?n50kpq");
+@import url("http://www.darkageofcamelot.com/sites/daoc/themes/fusion/fusion_starter/css/fusion-starter-style.css?n50kpq");
+@import url("http://www.darkageofcamelot.com/sites/daoc/themes/fusion/fusion_starter/css/colorbox.css?n50kpq");
+@import url("http://www.darkageofcamelot.com/sites/daoc/themes/fusion/fusion_starter/css/coffee.css?n50kpq");
+@import url("http://www.darkageofcamelot.com/sites/daoc/themes/fusion/fusion_core/css/grid16-960.css?n50kpq");
+@import url("http://www.darkageofcamelot.com/sites/daoc/themes/fusion/fusion_starter/css/local.css?n50kpq");
+
+
+
+
+
+#main {
+    z-index: 9;
+    position: relative;
+}
+#main-wrapper {
+    margin-top: 150px;
+}
+.content-cap-top {
+    background: url('../images/content-cap-top.png') no-repeat center top;
+    height: 168px;
+    -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+    padding: 45px 0 0 45px;
+}
+.search-inputs {
+    padding: 45px 0 0 0;
+}
+input {
+    background: #a99875;
+    border: 1px solid #32271f;
+    padding: 10px 8px 7px 8px;
+    font-size: 12px;
+    color: #322917;
+}
+input[type=submit] {
+    background: #32271f;
+    padding: 3px 12px 4px;
+    color: #fff;
+    font-size: 24px;
+    font-family: "kingthings_exeterregular";
+}
+input[type=submit]:hover {
+    background: #1a1410;
+}
+.content-cap-top-title {
+    font-family: "matizregular";
+    font-size: 48px;
+    color: #e9cf9d;
+}
+select {
+    background: #a99875 url('../images/select-dropdown.png') no-repeat center right;
+    border: 1px solid #32271f;
+    padding: 10px 65px 7px 8px;
+    font-size: 12px;
+    color: #322917;
+    border-radius: 0;
+    width: 245px;
+    -webkit-appearance: none;
+}
+.char-name {
+    width: 160px;
+}
+.guild-name {
+    width: 240px;
+    margin: 0 0 0 40px;
+}
+.content-mid {
+    background: url('../images/content-mid-bg.png') repeat-y center top;
+    padding: 10px 0 0 10px;
+}
+.content-cap-bot {
+    background: url('../images/content-cap-bot.png') no-repeat center top;
+    height: 113px;
+}
+.content-main-top {
+    background: url('../images/content-main-top.png') no-repeat center top;
+    height: 86px;
+}
+.content-main-mid {
+    background: url('../images/content-main-mid.png') repeat-y center top;
+    padding: 0 50px 0 50px;
+    font-size: 15px;
+}
+.content-main-bot {
+    background: url('../images/content-main-bot.png') no-repeat center top;
+    height: 86px;
+}
+.main-content {
+    margin: -50px 0 -50px 0;
+}
+.heading {
+    font-family: "kingthings_exeterregular";
+    font-size: 28px;
+    color: #000000;
+}
+.heading-row {
+    border-bottom: 1px solid #b4a483;
+    padding: 0 0 15px 0;
+}
+td {
+    padding: 12px 5px 0px 5px;
+}
+::-webkit-input-placeholder { /* WebKit browsers */
+    color:    #322917;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color:    #322917;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color:    #322917;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color:    #322917;
+}
+@font-face {
+    font-family: 'matizregular';
+    src: url('../fonts/Matiz-webfont.eot');
+    src: url('../fonts/Matiz-webfont.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/Matiz-webfont.woff') format('woff'),
+    url('../fonts/Matiz-webfont.ttf') format('truetype'),
+    url('../fonts/Matiz-webfont.svg#matizregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'kingthings_exeterregular';
+    src: url('../fonts/Kingthings_Exeter-webfont.eot');
+    src: url('../fonts/Kingthings_Exeter-webfont.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/Kingthings_Exeter-webfont.woff') format('woff'),
+    url('../fonts/Kingthings_Exeter-webfont.ttf') format('truetype'),
+    url('../fonts/Kingthings_Exeter-webfont.svg#kingthings_exeterregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+#char-info {
+    overflow: hidden;
+    padding: 0 0 0px 0;
+    border-bottom: 1px solid #b4a483;
+    margin: 0 0 30px 0;
+}
+#char-info h2 {
+    color: #e9cf9d;
+    font-size: 30px;
+    font-weight: normal;
+    margin: 0 0 15px 0;
+}
+#char-info h3 {
+    font-family: "kingthings_exeterregular";
+    color: #000000;
+    font-size: 24px;
+    font-weight: normal;
+}
+#char-info p {
+    margin: 8px 0;
+}
+#char-info a {
+    font-weight: normal;
+    text-decoration: underline;
+}
+#char-info:after {
+    clear: both;
+}
+.char-info-main {
+    width: 240px;
+    border-right: 1px solid #b9aa84;
+    float: left;
+    padding: 0 0 10px 0;
+    min-height: 160px;
+}
+.char-info-level {
+    width: 350px;
+    border-right: 1px solid #b9aa84;
+    float: left;
+    padding: 37px 0 0px 15px;
+    min-height: 140px;
+}
+.char-info-emblems {
+    width: 245px;
+    float: left;
+    text-align: center;
+    padding: 45px 0 10px 15px;
+    min-height: 160px;
+}
+.table-heading {
+    color: #e9cf9d;
+    font-size: 22px;
+    font-family: "matizregular";
+    border-bottom: 1px solid #b9aa84;
+    padding: 0 0 20px 0;
+    margin: 0 0 20px 0;
+}
+table {
+    border-bottom: 1px solid #b9aa84;
+    padding: 0 0 20px 0;
+    margin: 0 0 50px 0;
+}
+
+.content-mid table {
+    border-bottom: 1px solid #b9aa84;
+    padding: 0 0 20px 0;
+    margin: 0 0 50px 0;
+}
+#guild-results {
+    overflow: hidden;
+}
+#guild-results:after {
+    clear: both;
+}
+#guild-info {
+    padding: 0 0 20px 0;
+    overflow: hidden;
+    border-bottom: 1px solid #b9aa84;
+    margin: 0 0 20px 0;
+}
+.guild-left {
+    width: 545px;
+    float: left;
+    padding: 0 20px 0 0;
+    -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+}
+.guild-left h2 {
+    color: #e9cf9d;
+    font-size: 30px;
+    font-weight: normal;
+    margin: 0 0 15px 0;
+}
+.guild-left h3 {
+    font-family: "kingthings_exeterregular";
+    color: #000000;
+    font-size: 24px;
+    font-weight: normal;
+}
+.guild-left a {
+    font-weight: normal;
+    text-decoration: underline;
+}
+.guild-left p {
+    margin: 8px 0;
+}
+.guild-info-emblem {
+    width: 75px;
+    float: left;
+}
+.guild-info-1 {
+    width: 200px;
+    float: left;
+}
+.guild-info-2 {
+    width: 250px;
+    float: left;
+    padding: 68px 0 0 0;
+}
+.guild-right {
+    width: 325px;
+    float: left;
+    padding: 20px 0 0 25px;
+    min-height: 505px;
+    background: url('../images/divider-guild.png') repeat-y left;
+    -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+}
+a.prev {
+    background: #32271f;
+    padding: 6px 20px;
+    font-family: "kingthings_exeterregular";
+    color: #fff;
+    font-size: 18px;
+    float: left;
+    text-decoration: none;
+}
+a.next {
+    background: #32271f;
+    padding: 6px 20px;
+    font-family: "kingthings_exeterregular";
+    color: #fff;
+    font-size: 18px;
+    float: right;
+    text-decoration: none;
+}
+a.prev:hover, a.next:hover {
+    background: #1a1410;
+}
+.search-sort {
+    border-bottom: 1px solid #b9aa84;
+    padding: 0 0 20px 0;
+    margin: 0 0 20px 0;
+}
+.align-right {
+    text-align: right;
+}
+
+/*body {
     padding-top: 20px;
     padding-bottom: 20px;
 }
@@ -23,16 +333,17 @@ col {
 }
 .herald_footer {
     background: black;
-}
+}*/
+
 .toggle {
     cursor: pointer;
 }
 
 
 
-.fade {
+/*.fade {
     position: absolute;
-    /*top: 0;*/
+    top: 0;
     left: 0;
     right: 0;
     height: 100%;
@@ -56,4 +367,4 @@ col {
 }
 .fade.ng-leave-active {
     opacity: 0;
-}
+}*/

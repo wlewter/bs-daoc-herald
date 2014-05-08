@@ -1,5 +1,137 @@
 <div data-ng-show="completed">
 
+<div id="main" class="main region grid16-16">
+<div id="main-inner" class="main-inner inner clearfix">
+
+    <!-- main group: width = grid_width - sidebar_first_width -->
+    <div id="main-group" class="main-group region nested grid16-16">
+        <div id="main-group-inner" class="main-group-inner inner">
+
+            <div class="content-cap-top">
+                <div class="content-cap-top-title">CHARACTER &amp; GUILD SEARCH</div>
+                <div class="search-inputs">
+                    <input type="text" name="char-name" class="char-name" placeholder="Character Name">
+                    <select>
+                        <option>Server</option>
+                        <option>Ywain</option>
+                    </select>
+                    <input type="submit" value="Search">
+
+                    <input type="text" name="guild-name" class="guild-name" placeholder="Guild Name">
+                    <input type="submit" value="Search">
+                </div>
+            </div>
+            <div class="content-mid">
+                <div class="content-main-top"></div>
+                <div class="content-main-mid">
+                    <div class="main-content">
+
+                        <div id="guild-results">
+                            <div class="guild-left">
+
+                                <div id="guild-info">
+                                    <div class="guild-info-emblem">
+                                        <img src="images/guild_emblem.jpg" alt="" />
+                                    </div>
+
+                                    <div class="guild-info-1">
+                                        <h2>{{guildData.name}}</h2>
+                                        <h3>{{realm}}</h3>
+                                        <p><strong>Contact</strong> - <a href="mailto:{{guildData.email}}">{{guildData.email}}</a></p>
+                                        <p><strong>Website</strong> - <a href="{{guildData.webpage}}"><span data-ng-if="guildData.webpage">Visit Website</span></a></p>
+                                        <p><strong>Guild House</strong> - Lot {{guildData.owned_housing_lot}}</p>
+                                    </div>
+
+                                    <div class="guild-info-2">
+                                        <p><strong>Membership</strong> - <!--6 Active Characters--></p>
+                                        <p><strong>Guild Realm Points</strong> - {{guildData.realm_war_overall.realm_points | number}}</p>
+                                        <p><strong>Outpost Claimed</strong> - {{guildData.claimed_outpost}}</p>
+                                    </div>
+                                </div>
+
+                                <div class="search-sort">
+                                    Sort By: &nbsp;
+                                    <select data-ng-model="sortBy" data-ng-change="sortByChange()">
+                                        <option value="LEVEL">Level</option>
+                                        <option value="CLASS">Class</option>
+                                        <option value="NAME">Name</option>
+                                        <option value="RANK">Guild Rank</option>
+                                        <option value="REALM_POINTS">Realm Points</option>
+                                    </select>
+                                </div>
+
+                                <table>
+                                    <tr class="heading-row">
+                                        <td class="heading heading-row">Player Name</td>
+                                        <td class="heading heading-row">Class</td>
+                                        <td class="heading heading-row">Guild Rank</td>
+                                        <td class="heading heading-row">Realm Points</td>
+                                    </tr>
+                                    <tr data-ng-repeat="charData in rosterData.roster">
+                                        <td><a href="#/character/{{charData.character_web_id}}">{{charData.name}}</a></td>
+                                        <td>{{charData.level}} / {{charData.race}} / {{charData.class_name}}</td>
+                                        <td>{{charData.guild_rank}}</td>
+                                        <td>{{charData.realm_points | number}}</td>
+                                    </tr>
+                                </table>
+
+                                <a data-ng-if="pageNumber > 0" class="toggle prev" data-ng-click="prevPage()">&lt;&lt; Prev</a>
+                                <a data-ng-if="hasNext" class="toggle next" data-ng-click="nextPage()">Next &gt;&gt;</a>
+
+                            </div>
+
+                            <div class="guild-right">
+
+                                <table data-ng-if="guildData.alliance">
+                                    <tr class="heading-row toggle" data-ng-click="showAlliance = !showAlliance">
+                                        <td colspan="2" class="heading heading-row">Alliance<br/>
+                                            <small><em>Click to toggle display</em></small></td>
+                                    </tr>
+                                    <tbody data-ng-if="showAlliance">
+                                    <tr>
+                                        <td><a href="#/guild/{{guildData.alliance.alliance_leader.guild_web_id}}">{{guildData.alliance.alliance_leader.name}}</a> [Leader]</td>
+                                        <td class="align-right">{{guildData.alliance.alliance_leader.realm_points | number}}</td>
+                                    </tr>
+                                    <tr data-ng-repeat="guild in guildData.alliance.alliance_members">
+                                        <td><a href="#/guild/{{guild.guild_web_id}}">{{guild.name}}</a></td>
+                                        <td class="align-right">{{guild.realm_points | number}}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+
+                                <table data-ng-repeat="leaderboard in guildData.leaderboards" data-ng-init="leaderboard.show = true; leaderboard.type = (leaderboard.type==='REALM_POINTS_OVERALL') ? 'Top 10 RP Holders' : leaderboard.type">
+                                    <tr class="heading-row toggle" data-ng-click="leaderboard.show = !leaderboard.show">
+                                        <td colspan="2" class="heading heading-row">{{leaderboard.type}}<br/>
+                                            <small><em>Click to toggle display</em></small>
+                                        </td>
+                                    </tr>
+                                    <tbody data-ng-if="leaderboard.show">
+                                    <tr data-ng-repeat="char in leaderboard.entries">
+                                        <td><a href="#/character/{{char.character_web_id}}">{{char.name}}</a><br/>{{char.level}} {{char.class_name}}</td>
+                                        <td class="align-right">{{char.value | number}}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class="content-main-bot"></div>
+            </div>
+            <div class="content-cap-bot"></div>
+
+        </div><!-- /main-group -->
+    </div><!-- /main-inner -->
+    </div>
+</div><!-- /main -->
+</div>
+
+
+<!--<div data-ng-show="completed">
+
 <div class="row">
     <div class="col-sm-12">
         <h1>{{guildData.name}}</h1>
@@ -12,7 +144,7 @@
         <strong>Contact:</strong> <a href="mailto:{{guildData.email}}">{{guildData.email}}</a><br />
         <strong>Website:</strong> <a href="{{guildData.webpage}}">{{guildData.webpage}}</a><br />
         <strong>Guild House:</strong> Lot# {{guildData.owned_housing_lot}}<br />
-        <!-- Membership: {{guildData.members}} active characters<br /> -->
+        Membership: {{guildData.members}} active characters<br />
         <strong>Guild Realm Points:</strong> {{guildData.realm_war_overall.realm_points | number}}<br />
         <strong>Outpost Claimed:</strong> {{guildData.claimed_outpost}}
     </div>
@@ -155,4 +287,4 @@
     </div>
 </div>
 
-</div>
+</div>-->
