@@ -2,12 +2,52 @@
   'use strict';
 
   angular.module('bsDaocHeraldApp')
-    .controller('CharacterCtrl', function ($scope, $routeParams, Character, REALM, RealmRanks, LastOn) {
+    .controller('CharacterCtrl', function ($scope, $routeParams, Character, REALM, RealmRanks, LastOn, Clusters, $location) {
 
       $scope.completed = false;
 
+      /* search stuff */
+      $scope.charName = '';
+      $scope.guildName = '';
+
+      $scope.clusters = Clusters.query( function(clusters) {
+        if( $routeParams.clusterId ) {
+          $scope.cluster = _.find(clusters, function (cluster) {
+            return cluster.cluster_name == $routeParams.clusterId;
+          });
+        }
+      });
+
+      $scope.searchChar = function () {
+        if (!$scope.cluster || !$scope.cluster.cluster_name) {
+          return;
+        }
+
+        if ( $scope.charName !== '' ) {
+          $location.path('/search/c/' + $scope.cluster.cluster_name + '/' + $scope.charName);
+        }
+      };
+
+
+      $scope.searchGuild = function () {
+
+        if ( $scope.guildName !== '' ) {
+          $location.path('/search/g/' + $scope.guildName);
+        }
+      };
+
+      $scope.clearGuild = function () {
+        $scope.guildName = '';
+      };
+
+      $scope.clearChar = function () {
+        $scope.charName = '';
+      };
+      /* end search stuff*/
+
       $scope.charData = Character.query({charId: $routeParams.charId}, function (charData) {
         $scope.realm = REALM[charData.realm];
+        $scope.classImg = 'images/classes/' + charData.class_name + '.jpg';
 
         LastOn.query(function(laston) {
           $scope.laston = laston[charData.last_on_range];

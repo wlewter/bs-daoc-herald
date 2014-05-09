@@ -163,6 +163,12 @@ td {
     font-size: 30px;
     font-weight: normal;
     margin: 0 0 15px 0;
+    line-height: 30px;
+    text-transform: uppercase;
+}
+.char-info-name {
+    padding: 0 0 20px 0;
+    word-wrap:break-word;
 }
 #char-info h3 {
     font-family: "kingthings_exeterregular";
@@ -191,14 +197,14 @@ td {
     width: 350px;
     border-right: 1px solid #b9aa84;
     float: left;
-    padding: 37px 0 0px 15px;
+    padding: 0 0 0px 15px;
     min-height: 140px;
 }
 .char-info-emblems {
     width: 245px;
     float: left;
     text-align: center;
-    padding: 45px 0 10px 15px;
+    padding: 27px 0 10px 15px;
     min-height: 160px;
 }
 .table-heading {
@@ -209,12 +215,11 @@ td {
     padding: 0 0 20px 0;
     margin: 0 0 20px 0;
 }
-table {
-    border-bottom: 1px solid #b9aa84;
-    padding: 0 0 20px 0;
-    margin: 0 0 50px 0;
-}
 
+.footer-branding table {
+    margin-left: auto;
+    margin-right: auto;
+}
 .content-mid table {
     border-bottom: 1px solid #b9aa84;
     padding: 0 0 20px 0;
@@ -243,6 +248,8 @@ table {
     font-size: 30px;
     font-weight: normal;
     margin: 0 0 15px 0;
+    line-height: 30px;
+    text-transform: uppercase;
 }
 .guild-left h3 {
     font-family: "kingthings_exeterregular";
@@ -258,7 +265,9 @@ table {
     margin: 8px 0;
 }
 .guild-info-emblem {
-    width: 75px;
+    width: 80px;
+    height: 100px;
+    margin-right: 5px;
     float: left;
 }
 .guild-info-1 {
@@ -266,9 +275,9 @@ table {
     float: left;
 }
 .guild-info-2 {
-    width: 250px;
+    width: 240px;
     float: left;
-    padding: 68px 0 0 0;
+    padding: 28px 0 0 0;
 }
 .guild-right {
     width: 325px;
@@ -277,6 +286,11 @@ table {
     min-height: 505px;
     background: url('../images/divider-guild.png') repeat-y left;
     -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+}
+.guild-info-name {
+    word-wrap: break-word;
+    width: 440px;
+    float: left;
 }
 a.prev {
     background: #32271f;

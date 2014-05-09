@@ -2,10 +2,49 @@
   'use strict';
 
   angular.module('bsDaocHeraldApp')
-    .controller('GuildCtrl', function ($scope, $routeParams, Guild, Roster, REALM, $location, LastOn) {
+    .controller('GuildCtrl', function ($scope, $routeParams, Guild, Roster, REALM, $location, LastOn, Clusters) {
 
       $scope.completed = false;
       var searchOptions = $location.search();
+
+      /* search stuff */
+      $scope.charName = '';
+      $scope.guildName = '';
+
+      $scope.clusters = Clusters.query( function(clusters) {
+        if( $routeParams.clusterId ) {
+          $scope.cluster = _.find(clusters, function (cluster) {
+            return cluster.cluster_name == $routeParams.clusterId;
+          });
+        }
+      });
+
+      $scope.searchChar = function () {
+        if (!$scope.cluster || !$scope.cluster.cluster_name) {
+          return;
+        }
+
+        if ( $scope.charName !== '' ) {
+          $location.path('/search/c/' + $scope.cluster.cluster_name + '/' + $scope.charName);
+        }
+      };
+
+
+      $scope.searchGuild = function () {
+
+        if ( $scope.guildName !== '' ) {
+          $location.path('/search/g/' + $scope.guildName);
+        }
+      };
+
+      $scope.clearGuild = function () {
+        $scope.guildName = '';
+      };
+
+      $scope.clearChar = function () {
+        $scope.charName = '';
+      };
+      /* end search stuff*/
 
       $scope.showAlliance = true;
       $scope.hasNext = true;
@@ -14,6 +53,16 @@
       $scope.pageNumber = searchOptions.pageNumber || 0;
 
       $scope.guildData = Guild.query({guildId: $routeParams.guildId}, function (guildData) {
+
+        if( guildData.insignia ) {
+          $scope.guildShield = '../images/shields/' + guildData.insignia.insignia_color_one + '-' + guildData.insignia.insignia_color_two + '-' + guildData.insignia.insignia_pattern + '-full.png';
+          if( guildData.insignia.insignia_emblem === 0 ) {
+            $scope.guildEmblem = '../images/insignia/blank.gif';
+          } else {
+            var zeroPadding = guildData.insignia.insignia_emblem < 10 ? '00' : guildData.insignia.insignia_emblem < 100 ? '0' : '';
+            $scope.guildEmblem = '../images/insignia/emblem_' + zeroPadding + guildData.insignia.insignia_emblem + '.gif';
+          }
+        }
 
         $scope.getRoster(guildData.guild_web_id, $scope.pageNumber, $scope.sortBy);
       });

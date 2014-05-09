@@ -10,15 +10,14 @@
             <div class="content-cap-top">
                 <div class="content-cap-top-title">CHARACTER &amp; GUILD SEARCH</div>
                 <div class="search-inputs">
-                    <input type="text" name="char-name" class="char-name" placeholder="Character Name">
-                    <select>
-                        <option>Server</option>
-                        <option>Ywain</option>
+                    <input type="text" name="char-name" class="char-name" placeholder="Character Name"  data-ng-model="charName" data-ng-change="clearGuild()" data-bs-enter="searchChar()">
+                    <select data-ng-model="cluster" data-ng-options="c.cluster_name for c in clusters" data-bs-enter="searchChar()">
+                        <option value="">Select a server</option>
                     </select>
-                    <input type="submit" value="Search">
+                    <input type="submit" value="Search" data-ng-click="searchChar()">
 
-                    <input type="text" name="guild-name" class="guild-name" placeholder="Guild Name">
-                    <input type="submit" value="Search">
+                    <input type="text" name="guild-name" class="guild-name" placeholder="Guild Name" data-ng-model="guildName" data-ng-change="clearChar()" data-bs-enter="searchGuild()">
+                    <input type="submit" value="Search" data-ng-click="searchGuild()">
                 </div>
             </div>
             <div class="content-mid">
@@ -30,12 +29,14 @@
                             <div class="guild-left">
 
                                 <div id="guild-info">
-                                    <div class="guild-info-emblem">
-                                        <img src="images/guild_emblem.jpg" alt="" />
+                                    <div data-ng-show="guildData.insignia" class="guild-info-emblem" style="background-image: url('{{guildShield}}');">
+                                        <img style="display:block; margin-left: auto; margin-right: auto" width="64px" height="64px" data-ng-src="{{guildEmblem}}" alt="" />
                                     </div>
 
-                                    <div class="guild-info-1">
+                                    <div class="guild-info-name">
                                         <h2>{{guildData.name}}</h2>
+                                    </div>
+                                    <div class="guild-info-1">
                                         <h3>{{realm}}</h3>
                                         <p><strong>Contact</strong> - <a href="mailto:{{guildData.email}}">{{guildData.email}}</a></p>
                                         <p><strong>Website</strong> - <a href="{{guildData.webpage}}"><span data-ng-if="guildData.webpage">Visit Website</span></a></p>
