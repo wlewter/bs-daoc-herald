@@ -69,7 +69,7 @@
                                         <td class="heading heading-row">Realm Points</td>
                                     </tr>
                                     <tr data-ng-repeat="charData in rosterData.roster">
-                                        <td><a href="#/character/{{charData.character_web_id}}">{{charData.name}}</a></td>
+                                        <td><a href="#/character/{{charData.character_web_id}}" title="{{charData.name}}">{{charData.name | truncate: 20}}</a></td>
                                         <td>{{charData.level}} / {{charData.race}} / {{charData.class_name}}</td>
                                         <td>{{charData.guild_rank}}</td>
                                         <td>{{charData.realm_points | number}}</td>
@@ -90,11 +90,11 @@
                                     </tr>
                                     <tbody data-ng-if="showAlliance">
                                     <tr>
-                                        <td><a href="#/guild/{{guildData.alliance.alliance_leader.guild_web_id}}">{{guildData.alliance.alliance_leader.name}}</a> [Leader]</td>
+                                        <td><a href="#/guild/{{guildData.alliance.alliance_leader.guild_web_id}}" title="{{guildData.alliance.alliance_leader.name}}">{{guildData.alliance.alliance_leader.name | truncate: 20}}</a> [Leader]</td>
                                         <td class="align-right">{{guildData.alliance.alliance_leader.realm_points | number}}</td>
                                     </tr>
                                     <tr data-ng-repeat="guild in guildData.alliance.alliance_members">
-                                        <td><a href="#/guild/{{guild.guild_web_id}}">{{guild.name}}</a></td>
+                                        <td><a href="#/guild/{{guild.guild_web_id}}" title="{{guild.name}}">{{guild.name | truncate: 20}}</a></td>
                                         <td class="align-right">{{guild.realm_points | number}}</td>
                                     </tr>
                                     </tbody>
@@ -108,7 +108,7 @@
                                     </tr>
                                     <tbody data-ng-if="leaderboard.show">
                                     <tr data-ng-repeat="char in leaderboard.entries">
-                                        <td><a href="#/character/{{char.character_web_id}}">{{char.name}}</a><br/>{{char.level}} {{char.class_name}}</td>
+                                        <td><a href="#/character/{{char.character_web_id}}" title="{{char.name}}">{{char.name | truncate: 20}}</a><br/>{{char.level}} {{char.class_name}}</td>
                                         <td class="align-right">{{char.value | number}}</td>
                                     </tr>
                                     </tbody>

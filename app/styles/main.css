@@ -258,8 +258,8 @@ td {
     font-weight: normal;
 }
 .guild-left a {
-    font-weight: normal;
-    text-decoration: underline;
+    /*font-weight: normal;
+    text-decoration: underline;*/
 }
 .guild-left p {
     margin: 8px 0;
