@@ -53,6 +53,7 @@
                                 </div>
 
                                 <div class="search-sort">
+                                    &nbsp;
                                     Sort By: &nbsp;
                                     <select data-ng-model="sortBy" data-ng-change="sortByChange()">
                                         <option value="LEVEL">Level</option>
@@ -61,6 +62,8 @@
                                         <option value="RANK">Guild Rank</option>
                                         <option value="REALM_POINTS">Realm Points</option>
                                     </select>
+                                    <a data-ng-if="pageNumber > 0" class="toggle prev" data-ng-click="prevPage()">&lt;&lt; Prev</a>
+                                    <a data-ng-if="hasNext" class="toggle next" data-ng-click="nextPage()">Next &gt;&gt;</a>
                                 </div>
 
                                 <table>
