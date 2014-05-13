@@ -187,14 +187,14 @@ td {
     clear: both;
 }
 .char-info-main {
-    width: 240px;
+    width: 320px;
     border-right: 1px solid #b9aa84;
     float: left;
     padding: 0 0 10px 0;
     min-height: 160px;
 }
 .char-info-level {
-    width: 350px;
+    width: 270px;
     border-right: 1px solid #b9aa84;
     float: left;
     padding: 0 0 0px 15px;
