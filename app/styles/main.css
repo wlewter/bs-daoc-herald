@@ -204,8 +204,13 @@ td {
     width: 245px;
     float: left;
     text-align: center;
-    padding: 27px 0 10px 15px;
-    min-height: 160px;
+    padding: 20px 0 10px 15px;
+    min-height: 150px;
+}
+.char-guild-info-emblem {
+    width: 80px;
+    height: 100px;
+    float: right;
 }
 .table-heading {
     color: #e9cf9d;

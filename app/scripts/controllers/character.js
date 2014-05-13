@@ -49,6 +49,16 @@
         $scope.realm = REALM[charData.realm];
         $scope.classImg = 'images/classes/' + charData.class_name + '.jpg';
 
+        if( charData.guild_info.insignia ) {
+          $scope.guildShield = '../images/shields/' + charData.guild_info.insignia.insignia_color_one + '-' + charData.guild_info.insignia.insignia_color_two + '-' + charData.guild_info.insignia.insignia_pattern + '-full.png';
+          if( charData.guild_info.insignia.insignia_emblem === 0 ) {
+            $scope.guildEmblem = '../images/insignia/blank.gif';
+          } else {
+            var zeroPadding = charData.guild_info.insignia.insignia_emblem < 10 ? '00' : charData.guild_info.insignia.insignia_emblem < 100 ? '0' : '';
+            $scope.guildEmblem = '../images/insignia/emblem_' + zeroPadding + charData.guild_info.insignia.insignia_emblem + '.gif';
+          }
+        }
+
         LastOn.query(function(laston) {
           $scope.laston = laston[charData.last_on_range];
         });

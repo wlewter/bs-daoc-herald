@@ -45,9 +45,11 @@
                                 <p><strong>Last seen</strong> - {{laston}}</p>
                             </div>
                             <div class="char-info-emblems">
-                                <!--<div data-ng-if="charData.insignia" background="{{guildShield}}" data-ng-cloak><img data-ng-src="{{guildInsignia}}" alt="{{charData.guild_info.guild_name}}" /></div>-->
-                                <img data-ng-src="{{classImg | lowercase}}" alt="" />
                                 <!--<img src="images/guild_emblem.jpg" alt="" />-->
+                                <img data-ng-src="{{classImg | lowercase}}" alt="" />
+                                <div data-ng-show="charData.guild_info.insignia.insignia_emblem !== 0" class="char-guild-info-emblem" style="background-image: url('{{guildShield}}');">
+                                    <img style="display:block; margin-left: auto; margin-right: auto" width="64px" height="64px" data-ng-src="{{guildEmblem}}" alt="" />
+                                </div>
                             </div>
                         </div>
 
