@@ -48,7 +48,7 @@
                                 <!--<img src="images/guild_emblem.jpg" alt="" />-->
                                 <img data-ng-src="{{classImg | lowercase}}" alt="" />
                                 <span data-ng-if="charData.guild_info"><a href="#/guild/{{charData.guild_info.guild_web_id}}">
-                                <div class="char-guild-info-emblem" ng-style="{'background-image':'url(' + guildShield + ')'}">
+                                <div class="char-guild-info-emblem" data-ng-style="{'background-image':'url(' + guildShield + ')'}">
                                     <img style="display:block; margin-left: auto; margin-right: auto" width="64px" height="64px" data-ng-src="{{guildEmblem}}" alt="" />
                                 </div></a></span>
                             </div>
@@ -95,6 +95,63 @@
                                 <td>x,xxx</td>
                                 <td>x,xxx</td>
                             </tr>-->
+                        </table>
+
+                        <div class="table-heading detailed-rvr">
+                            DETAILED RVR STATS
+                        </div>
+
+                        <table class="detailed-rvr">
+                            <tr>
+                                <td><strong>Number of kills</strong></td>
+                                <td align="right">{{charData.realm_war_stats.current.player_kills.total.kills | number:0}}</td>
+                            </tr>
+                            <tr data-ng-if="charData.realm_war_stats.current.player_kills.albion">
+                                <td>Albion</td>
+                                <td align="right">{{charData.realm_war_stats.current.player_kills.albion.kills | number:0}}</td>
+                            </tr>
+                            <tr data-ng-if="charData.realm_war_stats.current.player_kills.hibernia">
+                                <td>Hibernia</td>
+                                <td align="right">{{charData.realm_war_stats.current.player_kills.hibernia.kills | number:0}}</td>
+                            </tr>
+                            <tr data-ng-if="charData.realm_war_stats.current.player_kills.midgard">
+                                <td>Midgard</td>
+                                <td align="right">{{charData.realm_war_stats.current.player_kills.midgard.kills | number:0}}</td>
+                            </tr>
+
+                            <tr>
+                                <td><strong>Number of solo kills</strong></td>
+                                <td align="right">{{charData.realm_war_stats.current.player_kills.total.solo_kills | number:0}}</td>
+                            </tr>
+                            <tr data-ng-if="charData.realm_war_stats.current.player_kills.albion">
+                                <td>Albion</td>
+                                <td align="right">{{charData.realm_war_stats.current.player_kills.albion.solo_kills | number:0}}</td>
+                            </tr>
+                            <tr data-ng-if="charData.realm_war_stats.current.player_kills.hibernia">
+                                <td>Hibernia</td>
+                                <td align="right">{{charData.realm_war_stats.current.player_kills.hibernia.solo_kills | number:0}}</td>
+                            </tr>
+                            <tr data-ng-if="charData.realm_war_stats.current.player_kills.midgard">
+                                <td>Midgard</td>
+                                <td align="right">{{charData.realm_war_stats.current.player_kills.midgard.solo_kills | number:0}}</td>
+                            </tr>
+
+                            <tr>
+                                <td><strong>Number of death blows</strong></td>
+                                <td align="right">{{charData.realm_war_stats.current.player_kills.total.death_blows | number:0}}</td>
+                            </tr>
+                            <tr data-ng-if="charData.realm_war_stats.current.player_kills.albion">
+                                <td>Albion</td>
+                                <td align="right">{{charData.realm_war_stats.current.player_kills.albion.death_blows | number:0}}</td>
+                            </tr>
+                            <tr data-ng-if="charData.realm_war_stats.current.player_kills.hibernia">
+                                <td>Hibernia</td>
+                                <td align="right">{{charData.realm_war_stats.current.player_kills.hibernia.death_blows | number:0}}</td>
+                            </tr>
+                            <tr data-ng-if="charData.realm_war_stats.current.player_kills.midgard">
+                                <td>Midgard</td>
+                                <td align="right">{{charData.realm_war_stats.current.player_kills.midgard.death_blows | number:0}}</td>
+                            </tr>
                         </table>
 
                         <div class="table-heading">
