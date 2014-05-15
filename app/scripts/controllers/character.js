@@ -49,7 +49,7 @@
         $scope.realm = REALM[charData.realm];
         $scope.classImg = 'images/classes/' + charData.class_name + '.jpg';
 
-        if( charData.guild_info.insignia ) {
+        if( charData.guild_info && charData.guild_info.insignia ) {
           $scope.guildShield = '../images/shields/' + charData.guild_info.insignia.insignia_color_one + '-' + charData.guild_info.insignia.insignia_color_two + '-' + charData.guild_info.insignia.insignia_pattern + '-full.png';
           if( charData.guild_info.insignia.insignia_emblem === 0 ) {
             $scope.guildEmblem = '../images/insignia/blank.gif';
@@ -65,7 +65,7 @@
 
         RealmRanks.query({}, function (realmRanks) {
           var rankObj = _.find(realmRanks, function(realmRank) {
-            return charData.realm_war_overall.realm_points >= realmRank.min_rp && (!realmRank.max_rp || charData.realm_war_overall.realm_points < realmRank.max_rp);
+            return charData.realm_war_stats.current.realm_points >= realmRank.min_rp && (!realmRank.max_rp || charData.realm_war_stats.current.realm_points < realmRank.max_rp);
           });
 
           // if rank 0 or rank 13 no need to find levels
@@ -76,7 +76,7 @@
           else {
             // loop through the levels
             for (var i = rankObj.levels.length; i >= 0; i--) {
-              if (rankObj.levels[i] <= charData.realm_war_overall.realm_points) {
+              if (rankObj.levels[i] <= charData.realm_war_stats.current.realm_points) {
                 // if it's rank 1 then start with level 1
                 if (rankObj.minor_rank_start) {
                   i++;
