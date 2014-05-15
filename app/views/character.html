@@ -61,22 +61,48 @@
                         <table>
                             <tr class="heading-row">
                                 <td class="heading-row"></td>
-                                <td class="heading heading-row">PvP Deaths</td>
-                                <td class="heading heading-row">PvP Kills</td>
-                                <td class="heading heading-row">Realm Points</td>
-                                <td class="heading heading-row">IRS</td>
+                                <td class="heading heading-row" align="right">PvP Deaths</td>
+                                <td class="heading heading-row" align="right">PvP Kills</td>
+                                <td class="heading heading-row" align="right">Solo Kills</td>
+                                <td class="heading heading-row" align="right">Death Blows</td>
+                                <td class="heading heading-row" align="right">Realm Points</td>
+                                <td class="heading heading-row" align="right">IRS</td>
                                 <!--<td class="heading heading-row">Filler</td>
                                 <td class="heading heading-row">Filler</td>-->
                             </tr>
-                            <tr class="number">
-                                <td>Lifetime</td>
-                                <td>{{charData.realm_war_stats.current.player_kills.total.deaths | number:0}}</td>
-                                <td>{{charData.realm_war_stats.current.player_kills.total.kills | number:0}}</td>
-                                <td>{{charData.realm_war_stats.current.realm_points | number:0}}</td>
-                                <td>{{charData.realm_war_stats.current.realm_points / charData.realm_war_stats.current.player_kills.total.deaths | number:2}}</td>
+                            <tr class="number" data-ng-init="showKills = false">
+                                <td><a href="" data-ng-click="showKills = !showKills" title="click to expand"> + Lifetime</a></td>
+                                <td align="right">{{charData.realm_war_stats.current.player_kills.total.deaths | number:0}}</td>
+                                <td align="right">{{charData.realm_war_stats.current.player_kills.total.kills | number:0}}</td>
+                                <td align="right">{{charData.realm_war_stats.current.player_kills.total.solo_kills | number:0}}</td>
+                                <td align="right">{{charData.realm_war_stats.current.player_kills.total.death_blows | number:0}}</td>
+                                <td align="right">{{charData.realm_war_stats.current.realm_points | number:0}}</td>
+                                <td align="right">{{charData.realm_war_stats.current.realm_points / charData.realm_war_stats.current.player_kills.total.deaths | number:2}}</td>
                                 <!--<td>x,xxx</td>
                                 <td>x,xxx</td>-->
                             </tr>
+                            <tr data-ng-show="showKills" data-ng-if="charData.realm_war_stats.current.player_kills.albion">
+                                <td>&nbsp;</td>
+                                <td>Albion</td>
+                                <td align="right">{{charData.realm_war_stats.current.player_kills.albion.kills | number:0}}</td>
+                                <td align="right">{{charData.realm_war_stats.current.player_kills.albion.solo_kills | number:0}}</td>
+                                <td align="right">{{charData.realm_war_stats.current.player_kills.albion.death_blows | number:0}}</td>
+                            </tr>
+                            <tr data-ng-show="showKills" data-ng-if="charData.realm_war_stats.current.player_kills.hibernia">
+                                <td>&nbsp;</td>
+                                <td>Hibernia</td>
+                                <td align="right">{{charData.realm_war_stats.current.player_kills.hibernia.kills | number:0}}</td>
+                                <td align="right">{{charData.realm_war_stats.current.player_kills.hibernia.solo_kills | number:0}}</td>
+                                <td align="right">{{charData.realm_war_stats.current.player_kills.hibernia.death_blows | number:0}}</td>
+                            </tr>
+                            <tr data-ng-show="showKills" data-ng-if="charData.realm_war_stats.current.player_kills.midgard">
+                                <td>&nbsp;</td>
+                                <td>Midgard</td>
+                                <td align="right">{{charData.realm_war_stats.current.player_kills.midgard.kills | number:0}}</td>
+                                <td align="right">{{charData.realm_war_stats.current.player_kills.midgard.solo_kills | number:0}}</td>
+                                <td align="right">{{charData.realm_war_stats.current.player_kills.midgard.death_blows | number:0}}</td>
+                            </tr>
+
                             <!--<tr>
                                 <td>Today</td>
                                 <td>0</td>
@@ -97,7 +123,7 @@
                             </tr>-->
                         </table>
 
-                        <div class="table-heading detailed-rvr">
+<!--                        <div class="table-heading detailed-rvr">
                             DETAILED RVR STATS
                         </div>
 
@@ -153,7 +179,7 @@
                                 <td align="right">{{charData.realm_war_stats.current.player_kills.midgard.death_blows | number:0}}</td>
                             </tr>
                         </table>
-
+-->
                         <div class="table-heading">
                             TRADESKILL INFO
                         </div>
