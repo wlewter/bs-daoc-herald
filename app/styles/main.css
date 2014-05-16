@@ -109,7 +109,8 @@ select {
 }
 .heading {
     font-family: "kingthings_exeterregular";
-    font-size: 28px;
+    font-size: 20px;
+    font-weight: bold;
     color: #000000;
 }
 .heading-row {
