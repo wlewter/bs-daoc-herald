@@ -25,7 +25,11 @@
                 <div class="content-main-mid">
                     <div class="main-content">
 
-                        <div id="guild-results">
+                        <div data-ng-if="errorMsg">
+                            <p class="heading">Down for maintenance. Try again later.</p>
+                        </div>
+
+                        <div id="guild-results" data-ng-if="!errorMsg">
                             <div class="guild-left">
 
                                 <div id="guild-info">

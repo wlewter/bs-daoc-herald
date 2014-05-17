@@ -17,6 +17,8 @@
             return cluster.cluster_name == $routeParams.clusterId;
           });
         }
+      }, function( response ) {
+        $scope.errorMsg = true;
       });
 
       $scope.searchChar = function () {
@@ -65,6 +67,10 @@
         }
 
         $scope.getRoster(guildData.guild_web_id, $scope.pageNumber, $scope.sortBy);
+
+      }, function( response ) {
+        $scope.completed = true;
+        $scope.errorMsg = true;
       });
 
       $scope.sortByChange = function () {
@@ -103,6 +109,9 @@
           }
 
           $scope.completed = true;
+        }, function( response ) {
+          $scope.completed = true;
+          $scope.errorMsg = true;
         });
       };
 

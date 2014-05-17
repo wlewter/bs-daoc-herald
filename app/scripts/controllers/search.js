@@ -10,13 +10,16 @@
       $scope.type = '';
       var MAX_ROWS_DISPLAYED = 150;
 
-      $scope.clusters = Clusters.query( function(clusters) {
-        if( $routeParams.clusterId ) {
-          $scope.cluster = _.find(clusters, function (cluster) {
-            return cluster.cluster_name == $routeParams.clusterId;
-          });
-        }
-      });
+      $scope.clusters = Clusters
+        .query( function(clusters) {
+          if( $routeParams.clusterId ) {
+            $scope.cluster = _.find(clusters, function (cluster) {
+              return cluster.cluster_name == $routeParams.clusterId;
+            });
+          }
+        }, function( response ) {
+          $scope.errorMsg = true;
+        });
 
       if ($location.path().indexOf('/search/g') >= 0) {
         $scope.guildName = $routeParams.searchStr;
@@ -27,6 +30,8 @@
             guilds.results.splice( (guilds.results.length - MAX_ROWS_DISPLAYED) * -1, Number.MAX_VALUE);
           }
           $scope.completed = true;
+        }, function( response ) {
+          $scope.errorMsg = true;
         });
 
       } else if ($location.path().indexOf('/search/c') >= 0) {
@@ -40,6 +45,8 @@
             chars.results.splice( (chars.results.length - MAX_ROWS_DISPLAYED) * -1, Number.MAX_VALUE);
           }
           $scope.completed = true;
+        }, function( response ) {
+          $scope.errorMsg = true;
         });
 
       }

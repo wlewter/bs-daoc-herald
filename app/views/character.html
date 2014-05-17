@@ -25,108 +25,113 @@
                 <div class="content-main-mid">
                     <div class="main-content">
 
-                        <div id="char-info">
-                            <div class="char-info-name">
-                                <h2>{{charData.name}}</h2>
-                            </div>
-                            <div class="char-info-main">
-                                <h3>Level {{charData.level}} {{charData.race}} {{charData.class_name}}</h3>
-                                <p><strong>Realm Rank {{realmRank}}</strong> - {{rrTitle}}</p>
-                                <p><strong>Guild</strong> - <span data-ng-if="charData.guild_info"><a href="#/guild/{{charData.guild_info.guild_web_id}}"><strong>{{charData.guild_info.guild_name}}</strong></a></span>
-                                    <span data-ng-if="!charData.guild_info"><strong>None</strong></span></p>
-                            </div>
-                            <div class="char-info-level">
-                                <p>
-                                    <span data-ng-if="charData.master_level"><strong>Master Level {{charData.master_level.level}}</strong> - ({{charData.master_level.path}})</span>
-                                    <span data-ng-if="!charData.master_level"><strong>Master Level 0</strong></span>
-                                </p>
-                                <!--<p><strong>Champion Level 10</strong> - (Champion of the Realm)</p>-->
-                                <p><strong>{{realm}}</strong> - {{charData.server_name}}</p>
-                                <p><strong>Last seen</strong> - {{laston}}</p>
-                            </div>
-                            <div class="char-info-emblems">
-                                <!--<img src="images/guild_emblem.jpg" alt="" />-->
-                                <img data-ng-src="{{classImg | lowercase}}" alt="" />
-                                <span data-ng-if="charData.guild_info"><a href="#/guild/{{charData.guild_info.guild_web_id}}">
-                                <div class="char-guild-info-emblem" data-ng-style="{'background-image':'url(' + guildShield + ')'}">
-                                    <img style="display:block; margin-left: auto; margin-right: auto" width="64px" height="64px" data-ng-src="{{guildEmblem}}" alt="" />
-                                </div></a></span>
-                            </div>
+                        <div data-ng-if="errorMsg">
+                            <p class="heading">Down for maintenance. Try again later.</p>
                         </div>
 
-                        <div class="table-heading">
-                            REALM VS REALM STATS
+                        <div data-ng-if="!errorMsg">
+                            <div id="char-info">
+                                <div class="char-info-name">
+                                    <h2>{{charData.name}}</h2>
+                                </div>
+                                <div class="char-info-main">
+                                    <h3>Level {{charData.level}} {{charData.race}} {{charData.class_name}}</h3>
+                                    <p><strong>Realm Rank {{realmRank}}</strong> - {{rrTitle}}</p>
+                                    <p><strong>Guild</strong> - <span data-ng-if="charData.guild_info"><a href="#/guild/{{charData.guild_info.guild_web_id}}"><strong>{{charData.guild_info.guild_name}}</strong></a></span>
+                                        <span data-ng-if="!charData.guild_info"><strong>None</strong></span></p>
+                                </div>
+                                <div class="char-info-level">
+                                    <p>
+                                        <span data-ng-if="charData.master_level"><strong>Master Level {{charData.master_level.level}}</strong> - ({{charData.master_level.path}})</span>
+                                        <span data-ng-if="!charData.master_level"><strong>Master Level 0</strong></span>
+                                    </p>
+                                    <!--<p><strong>Champion Level 10</strong> - (Champion of the Realm)</p>-->
+                                    <p><strong>{{realm}}</strong> - {{charData.server_name}}</p>
+                                    <p><strong>Last seen</strong> - {{laston}}</p>
+                                </div>
+                                <div class="char-info-emblems">
+                                    <!--<img src="images/guild_emblem.jpg" alt="" />-->
+                                    <img data-ng-src="{{classImg | lowercase}}" alt="" />
+                                    <span data-ng-if="charData.guild_info"><a href="#/guild/{{charData.guild_info.guild_web_id}}">
+                                    <div class="char-guild-info-emblem" data-ng-style="{'background-image':'url(' + guildShield + ')'}">
+                                        <img style="display:block; margin-left: auto; margin-right: auto" width="64px" height="64px" data-ng-src="{{guildEmblem}}" alt="" />
+                                    </div></a></span>
+                                </div>
+                            </div>
+
+                            <div class="table-heading">
+                                REALM VS REALM STATS
+                            </div>
+
+                            <table>
+                                <tr class="heading-row">
+                                    <td class="heading-row"></td>
+                                    <td class="heading heading-row" align="right">PvP Deaths</td>
+                                    <td class="heading heading-row" align="right">PvP Kills</td>
+                                    <td class="heading heading-row" align="right">Solo Kills</td>
+                                    <td class="heading heading-row" align="right">Death Blows</td>
+                                    <td class="heading heading-row" align="right">Realm Points</td>
+                                    <td class="heading heading-row" align="right">IRS</td>
+                                    <!--<td class="heading heading-row">Filler</td>
+                                    <td class="heading heading-row">Filler</td>-->
+                                </tr>
+                                <tr class="number" data-ng-init="showKills = true">
+                                    <td><!--<a href="" data-ng-click="showKills = !showKills" title="click to expand"> <span data-ng-if="!showKills">&#9662;</span><span data-ng-if="showKills">&#9652;</span> --><strong>Lifetime</strong><!--</a>--></td>
+                                    <td align="right">{{charData.realm_war_stats.current.player_kills.total.deaths | number:0}}</td>
+                                    <td align="right">{{charData.realm_war_stats.current.player_kills.total.kills | number:0}}</td>
+                                    <td align="right">{{charData.realm_war_stats.current.player_kills.total.solo_kills | number:0}}</td>
+                                    <td align="right">{{charData.realm_war_stats.current.player_kills.total.death_blows | number:0}}</td>
+                                    <td align="right">{{charData.realm_war_stats.current.realm_points | number:0}}</td>
+                                    <td align="right">{{charData.realm_war_stats.current.realm_points / charData.realm_war_stats.current.player_kills.total.deaths | number:2}}</td>
+                                    <!--<td>x,xxx</td>
+                                    <td>x,xxx</td>-->
+                                </tr>
+                                <tr data-ng-show="showKills" data-ng-if="charData.realm_war_stats.current.player_kills.albion">
+                                    <td colspan="2">&nbsp; &nbsp; <strong>Albion</strong></td>
+                                    <td align="right">{{charData.realm_war_stats.current.player_kills.albion.kills | number:0}}</td>
+                                    <td align="right">{{charData.realm_war_stats.current.player_kills.albion.solo_kills | number:0}}</td>
+                                    <td align="right">{{charData.realm_war_stats.current.player_kills.albion.death_blows | number:0}}</td>
+                                </tr>
+                                <tr data-ng-show="showKills" data-ng-if="charData.realm_war_stats.current.player_kills.hibernia">
+                                    <td colspan="2">&nbsp; &nbsp; <strong>Hibernia</strong></td>
+                                    <td align="right">{{charData.realm_war_stats.current.player_kills.hibernia.kills | number:0}}</td>
+                                    <td align="right">{{charData.realm_war_stats.current.player_kills.hibernia.solo_kills | number:0}}</td>
+                                    <td align="right">{{charData.realm_war_stats.current.player_kills.hibernia.death_blows | number:0}}</td>
+                                </tr>
+                                <tr data-ng-show="showKills" data-ng-if="charData.realm_war_stats.current.player_kills.midgard">
+                                    <td colspan="2">&nbsp; &nbsp; <strong>Midgard</strong></td>
+                                    <td align="right">{{charData.realm_war_stats.current.player_kills.midgard.kills | number:0}}</td>
+                                    <td align="right">{{charData.realm_war_stats.current.player_kills.midgard.solo_kills | number:0}}</td>
+                                    <td align="right">{{charData.realm_war_stats.current.player_kills.midgard.death_blows | number:0}}</td>
+                                </tr>
+
+                            </table>
+
+                            <div class="table-heading">
+                                TRADESKILL INFO
+                            </div>
+
+                            <table>
+                                <tr class="heading-row">
+                                    <td class="heading heading-row">Spellcrafting</td>
+                                    <td class="heading heading-row">Alchemy</td>
+                                    <td class="heading heading-row">Armorcraft</td>
+                                    <td class="heading heading-row">Fletching</td>
+                                    <td class="heading heading-row">Tailoring</td>
+                                    <td class="heading heading-row">Weaponcraft</td>
+                                    <td class="heading heading-row">Seigecraft</td>
+                                </tr>
+                                <tr class="number">
+                                    <td>{{charData.crafting.spellcraft | number:0}}</td>
+                                    <td>{{charData.crafting.alchemy | number:0}}</td>
+                                    <td>{{charData.crafting.armorcraft | number:0}}</td>
+                                    <td>{{charData.crafting.fletching | number:0}}</td>
+                                    <td>{{charData.crafting.tailoring | number:0}}</td>
+                                    <td>{{charData.crafting.weaponcraft | number:0}}</td>
+                                    <td>{{charData.crafting.siegecraft | number:0}}</td>
+                                </tr>
+                            </table>
                         </div>
-
-                        <table>
-                            <tr class="heading-row">
-                                <td class="heading-row"></td>
-                                <td class="heading heading-row" align="right">PvP Deaths</td>
-                                <td class="heading heading-row" align="right">PvP Kills</td>
-                                <td class="heading heading-row" align="right">Solo Kills</td>
-                                <td class="heading heading-row" align="right">Death Blows</td>
-                                <td class="heading heading-row" align="right">Realm Points</td>
-                                <td class="heading heading-row" align="right">IRS</td>
-                                <!--<td class="heading heading-row">Filler</td>
-                                <td class="heading heading-row">Filler</td>-->
-                            </tr>
-                            <tr class="number" data-ng-init="showKills = true">
-                                <td><!--<a href="" data-ng-click="showKills = !showKills" title="click to expand"> <span data-ng-if="!showKills">&#9662;</span><span data-ng-if="showKills">&#9652;</span> --><strong>Lifetime</strong><!--</a>--></td>
-                                <td align="right">{{charData.realm_war_stats.current.player_kills.total.deaths | number:0}}</td>
-                                <td align="right">{{charData.realm_war_stats.current.player_kills.total.kills | number:0}}</td>
-                                <td align="right">{{charData.realm_war_stats.current.player_kills.total.solo_kills | number:0}}</td>
-                                <td align="right">{{charData.realm_war_stats.current.player_kills.total.death_blows | number:0}}</td>
-                                <td align="right">{{charData.realm_war_stats.current.realm_points | number:0}}</td>
-                                <td align="right">{{charData.realm_war_stats.current.realm_points / charData.realm_war_stats.current.player_kills.total.deaths | number:2}}</td>
-                                <!--<td>x,xxx</td>
-                                <td>x,xxx</td>-->
-                            </tr>
-                            <tr data-ng-show="showKills" data-ng-if="charData.realm_war_stats.current.player_kills.albion">
-                                <td colspan="2">&nbsp; &nbsp; <strong>Albion</strong></td>
-                                <td align="right">{{charData.realm_war_stats.current.player_kills.albion.kills | number:0}}</td>
-                                <td align="right">{{charData.realm_war_stats.current.player_kills.albion.solo_kills | number:0}}</td>
-                                <td align="right">{{charData.realm_war_stats.current.player_kills.albion.death_blows | number:0}}</td>
-                            </tr>
-                            <tr data-ng-show="showKills" data-ng-if="charData.realm_war_stats.current.player_kills.hibernia">
-                                <td colspan="2">&nbsp; &nbsp; <strong>Hibernia</strong></td>
-                                <td align="right">{{charData.realm_war_stats.current.player_kills.hibernia.kills | number:0}}</td>
-                                <td align="right">{{charData.realm_war_stats.current.player_kills.hibernia.solo_kills | number:0}}</td>
-                                <td align="right">{{charData.realm_war_stats.current.player_kills.hibernia.death_blows | number:0}}</td>
-                            </tr>
-                            <tr data-ng-show="showKills" data-ng-if="charData.realm_war_stats.current.player_kills.midgard">
-                                <td colspan="2">&nbsp; &nbsp; <strong>Midgard</strong></td>
-                                <td align="right">{{charData.realm_war_stats.current.player_kills.midgard.kills | number:0}}</td>
-                                <td align="right">{{charData.realm_war_stats.current.player_kills.midgard.solo_kills | number:0}}</td>
-                                <td align="right">{{charData.realm_war_stats.current.player_kills.midgard.death_blows | number:0}}</td>
-                            </tr>
-
-                        </table>
-
-                        <div class="table-heading">
-                            TRADESKILL INFO
-                        </div>
-
-                        <table>
-                            <tr class="heading-row">
-                                <td class="heading heading-row">Spellcrafting</td>
-                                <td class="heading heading-row">Alchemy</td>
-                                <td class="heading heading-row">Armorcraft</td>
-                                <td class="heading heading-row">Fletching</td>
-                                <td class="heading heading-row">Tailoring</td>
-                                <td class="heading heading-row">Weaponcraft</td>
-                                <td class="heading heading-row">Seigecraft</td>
-                            </tr>
-                            <tr class="number">
-                                <td>{{charData.crafting.spellcraft | number:0}}</td>
-                                <td>{{charData.crafting.alchemy | number:0}}</td>
-                                <td>{{charData.crafting.armorcraft | number:0}}</td>
-                                <td>{{charData.crafting.fletching | number:0}}</td>
-                                <td>{{charData.crafting.tailoring | number:0}}</td>
-                                <td>{{charData.crafting.weaponcraft | number:0}}</td>
-                                <td>{{charData.crafting.siegecraft | number:0}}</td>
-                            </tr>
-                        </table>
-
                     </div>
                 </div>
                 <div class="content-main-bot"></div>

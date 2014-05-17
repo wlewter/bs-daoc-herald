@@ -25,7 +25,15 @@
                     <div class="content-main-top"></div>
                     <div class="content-main-mid">
                         <div class="main-content">
-                            <table data-ng-if="type==='char'">
+                            <div data-ng-if="errorMsg">
+                                <p class="heading">Down for maintenance. Try again later.</p>
+                            </div>
+
+                            <div data-ng-if="type !== 'char' && type !== 'guild' && !errorMsg">
+                                <p class="heading">Enter a Character Name and select a server or enter a Guild Name and press Search.</p>
+                            </div>
+
+                            <table data-ng-if="type==='char' && !errorMsg">
                                 <tr class="heading-row">
                                     <td class="heading-row"></td>
                                     <td class="heading heading-row">Player Name</td>
@@ -45,7 +53,7 @@
                             </table>
 
 
-                            <table data-ng-if="type==='guild'">
+                            <table data-ng-if="type==='guild' && !errorMsg">
                                 <tr class="heading-row">
                                     <td class="heading-row"></td>
                                     <td class="heading heading-row">Guild Name</td>

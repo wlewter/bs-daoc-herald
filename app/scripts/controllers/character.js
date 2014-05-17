@@ -16,6 +16,8 @@
             return cluster.cluster_name == $routeParams.clusterId;
           });
         }
+      }, function( response ) {
+        $scope.errorMsg = true;
       });
 
       $scope.searchChar = function () {
@@ -61,6 +63,8 @@
 
         LastOn.query(function(laston) {
           $scope.laston = laston[charData.last_on_range];
+        }, function( response ) {
+          $scope.errorMsg = true;
         });
 
         RealmRanks.query({}, function (realmRanks) {
@@ -96,10 +100,15 @@
           } else {
             $scope.rrTitle = rankObj.titles[charData.realm - 1 ].male + ' / ' + rankObj.titles[charData.realm - 1 ].female;
           }
+        }, function( response ) {
+          $scope.errorMsg = true;
 
         });
 
         $scope.completed = true;
+      }, function( response ) {
+        $scope.completed = true;
+        $scope.errorMsg = true;
       });
 
 
