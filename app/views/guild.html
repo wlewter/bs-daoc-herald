@@ -105,9 +105,9 @@
                                     </tbody>
                                 </table>
 
-                                <table data-ng-repeat="leaderboard in guildData.leaderboards" data-ng-init="leaderboard.show = true; leaderboard.type = (leaderboard.type==='REALM_POINTS_OVERALL') ? 'Top 10 RP Holders' : leaderboard.type">
+                                <table data-ng-repeat="leaderboard in guildData.leaderboards" data-ng-init="leaderboard.show = true; leaderboard.type = (leaderboard.type==='REALM_POINTS_OVERALL') ? 'Realm Point Holders' : leaderboard.type">
                                     <tr class="heading-row toggle" data-ng-click="leaderboard.show = !leaderboard.show">
-                                        <td colspan="2" class="heading heading-row">{{leaderboard.type}}<br/>
+                                        <td colspan="2" class="heading heading-row">Top 10 {{leaderboard.type | capitalize}}<br/>
                                             <small><em>Click to toggle display</em></small>
                                         </td>
                                     </tr>
