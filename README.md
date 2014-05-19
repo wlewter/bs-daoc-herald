@@ -14,6 +14,6 @@ install bower dependencies with:
 run app locally with:
 >grunt serve
 
-build for distribution with:
->grunt build
+build for herald distribution with:
+>grunt build-herald
 

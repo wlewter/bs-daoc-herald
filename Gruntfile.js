@@ -160,7 +160,7 @@ module.exports = function (grunt) {
             '<%= yeoman.dist %>/scripts/{,*/}*.js',
             '<%= yeoman.dist %>/styles/{,*/}*.css',
             //'<%= yeoman.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
-            '<%= yeoman.dist %>/styles/fonts/*'
+            //'<%= yeoman.dist %>/styles/fonts/*'
           ]
         }
       }
@@ -249,7 +249,7 @@ module.exports = function (grunt) {
           expand: true,
           cwd: '.tmp/concat/scripts',
           src: '*.js',
-          dest: '.tmp/concat/scripts'
+          dest: '<%= yeoman.dist %>/scripts'
         }]
       }
     },
@@ -274,7 +274,8 @@ module.exports = function (grunt) {
             '.htaccess',
             '*.html',
             'views/{,*/}*.html',
-            'images/{,*/}*.{webp}',
+            'images/{,*/}*',
+            'styles/{,*/}*',
             'fonts/*',
             'json/*'
           ]
@@ -303,8 +304,8 @@ module.exports = function (grunt) {
       ],
       dist: [
         'copy:styles',
-        'imagemin',
-        'svgmin'
+        /*'imagemin',
+        'svgmin'*/
       ]
     },
 
@@ -384,6 +385,21 @@ module.exports = function (grunt) {
     'cdnify',
     'cssmin',
     'uglify',
+    'rev',
+    'usemin',
+    'htmlmin'
+  ]);
+
+  grunt.registerTask('build-herald', [
+    'clean:dist',
+    'bowerInstall',
+    'useminPrepare',
+    'concurrent:dist',
+    /*'autoprefixer',*/
+    'concat',
+    'ngmin',
+    'copy:dist',
+    /*'cssmin',*/
     'rev',
     'usemin',
     'htmlmin'
