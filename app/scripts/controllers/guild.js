@@ -57,12 +57,12 @@
       $scope.guildData = Guild.query({guildId: $routeParams.guildId}, function (guildData) {
 
         if( guildData.insignia ) {
-          $scope.guildShield = '../images/shields/' + guildData.insignia.insignia_color_one + '-' + guildData.insignia.insignia_color_two + '-' + guildData.insignia.insignia_pattern + '-full.png';
+          $scope.guildShield = 'images/shields/' + guildData.insignia.insignia_color_one + '-' + guildData.insignia.insignia_color_two + '-' + guildData.insignia.insignia_pattern + '-full.png';
           if( guildData.insignia.insignia_emblem === 0 ) {
-            $scope.guildEmblem = '../images/insignia/blank.gif';
+            $scope.guildEmblem = 'images/insignia/blank.gif';
           } else {
             var zeroPadding = guildData.insignia.insignia_emblem < 10 ? '00' : guildData.insignia.insignia_emblem < 100 ? '0' : '';
-            $scope.guildEmblem = '../images/insignia/emblem_' + zeroPadding + guildData.insignia.insignia_emblem + '.gif';
+            $scope.guildEmblem = 'images/insignia/emblem_' + zeroPadding + guildData.insignia.insignia_emblem + '.gif';
           }
         }
 

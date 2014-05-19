@@ -49,15 +49,55 @@
 
       $scope.charData = Character.query({charId: $routeParams.charId}, function (charData) {
         $scope.realm = REALM[charData.realm];
-        $scope.classImg = 'images/classes/' + charData.class_name + '.jpg';
+
+        /* class image info */
+        $scope.classStr = charData.class_name.toLowerCase();
+        $scope.charLink = true;
+        switch( $scope.classStr ) {
+          case 'acolyte':
+          case 'disciple':
+          case 'elementalist':
+          case 'fighter':
+          case 'forester':
+          case 'guardian':
+          case 'mage':
+          case 'magess':
+          case 'magician':
+          case 'mystic':
+          case 'naturalist':
+          case 'none':
+          case 'rogue':
+          case 'seer':
+          case 'stalker':
+          case 'viking':
+            $scope.charLink = false;
+            break;
+          case 'armswoman':
+            $scope.classStr = 'armsman';
+            break;
+          case 'enchantress':
+            $scope.classStr = 'enchanter';
+            break;
+          case 'heroine':
+            $scope.classStr = 'hero';
+            break;
+          case 'huntress':
+            $scope.classStr = 'hunter';
+            break;
+          case 'sorceress':
+            $scope.classStr = 'sorcerer';
+            break;
+        }
+        $scope.classImg = 'images/classes/' + $scope.classStr + '.jpg';
+        /* end class image info */
 
         if( charData.guild_info && charData.guild_info.insignia ) {
-          $scope.guildShield = '../images/shields/' + charData.guild_info.insignia.insignia_color_one + '-' + charData.guild_info.insignia.insignia_color_two + '-' + charData.guild_info.insignia.insignia_pattern + '-full.png';
+          $scope.guildShield = 'images/shields/' + charData.guild_info.insignia.insignia_color_one + '-' + charData.guild_info.insignia.insignia_color_two + '-' + charData.guild_info.insignia.insignia_pattern + '-full.png';
           if( charData.guild_info.insignia.insignia_emblem === 0 ) {
-            $scope.guildEmblem = '../images/insignia/blank.gif';
+            $scope.guildEmblem = 'images/insignia/blank.gif';
           } else {
             var zeroPadding = charData.guild_info.insignia.insignia_emblem < 10 ? '00' : charData.guild_info.insignia.insignia_emblem < 100 ? '0' : '';
-            $scope.guildEmblem = '../images/insignia/emblem_' + zeroPadding + charData.guild_info.insignia.insignia_emblem + '.gif';
+            $scope.guildEmblem = 'images/insignia/emblem_' + zeroPadding + charData.guild_info.insignia.insignia_emblem + '.gif';
           }
         }
 
