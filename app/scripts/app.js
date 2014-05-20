@@ -31,6 +31,10 @@
           templateUrl: 'views/character.html',
           controller: 'CharacterCtrl'
         })
+        .when('/login', {
+          templateUrl: 'views/login.html',
+          controller: 'LoginCtrl'
+        })
         .otherwise({
           redirectTo: '/search'
         });

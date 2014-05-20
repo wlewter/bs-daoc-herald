@@ -2,7 +2,11 @@
   'use strict';
 
   angular.module('bsDaocHeraldApp')
-    .controller('SearchCtrl', function ($scope, $routeParams, $location, Charsearch, Guildsearch, Clusters) {
+    .controller('SearchCtrl', function ($scope, $routeParams, $location, Charsearch, Guildsearch, Clusters, Auth) {
+
+      if( !Auth.isLoggedIn() ) {
+        $location.path('/login');
+      }
 
       $scope.completed = false;
       $scope.charName = '';

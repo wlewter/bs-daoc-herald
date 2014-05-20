@@ -1,0 +1,28 @@
+
+<div id="main" class="main region grid16-16">
+    <div id="main-inner" class="main-inner inner clearfix">
+
+        <!-- main group: width = grid_width - sidebar_first_width -->
+        <div id="main-group" class="main-group region nested grid16-16">
+            <div id="main-group-inner" class="main-group-inner inner">
+
+                <div class="content-cap-top">
+                    <div class="content-cap-top-title">CHARACTER &amp; GUILD SEARCH</div>
+                </div>
+                <div class="content-mid">
+                    <div class="content-main-top"></div>
+                    <div class="content-main-mid">
+                        <div class="main-content">
+                            <label for="username">Username:</label><input class="char-name" placeholder="Username" type="text" id="username" name="username" value="{{username}}"><br/>
+                            <label for="password">Password:</label><input class="char-name" placeholder="Password" type="password" id="password" name="password" value="{{password}}"><br/>
+                            <button ng-click="login()">Login</button>
+                        </div>
+                    <div class="content-main-bot"></div>
+                    </div>
+                </div>
+                <div class="content-cap-bot"></div>
+
+            </div><!-- /main-group -->
+        </div><!-- /main-inner -->
+    </div>
+</div><!-- /main -->
