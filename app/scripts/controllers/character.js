@@ -2,11 +2,12 @@
   'use strict';
 
   angular.module('bsDaocHeraldApp')
-    .controller('CharacterCtrl', function ($scope, $routeParams, Character, REALM, RealmRanks, LastOn, Clusters, $location, Auth) {
+    .controller('CharacterCtrl', function ($scope, $routeParams, Character, REALM, RealmRanks, LastOn, Clusters, $location) {
 
-      if( !Auth.isLoggedIn() ) {
+      /*if( !Auth.isLoggedIn() ) {
         $location.path('/login');
-      }
+        return;
+      }*/
 
       $scope.completed = false;
 

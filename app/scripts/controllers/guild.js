@@ -2,11 +2,12 @@
   'use strict';
 
   angular.module('bsDaocHeraldApp')
-    .controller('GuildCtrl', function ($scope, $routeParams, Guild, Roster, REALM, $location, LastOn, Clusters, Auth) {
+    .controller('GuildCtrl', function ($scope, $routeParams, Guild, Roster, REALM, $location, LastOn, Clusters) {
 
-      if( !Auth.isLoggedIn() ) {
+      /*if( !Auth.isLoggedIn() ) {
         $location.path('/login');
-      }
+        return;
+      }*/
 
       $scope.completed = false;
       var searchOptions = $location.search();

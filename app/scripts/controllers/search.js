@@ -2,11 +2,12 @@
   'use strict';
 
   angular.module('bsDaocHeraldApp')
-    .controller('SearchCtrl', function ($scope, $routeParams, $location, Charsearch, Guildsearch, Clusters, Auth, Base64) {
+    .controller('SearchCtrl', function ($scope, $routeParams, $location, Charsearch, Guildsearch, Clusters) {
 
-      if( !Auth.isLoggedIn() ) {
+      /*if( !Auth.isLoggedIn() ) {
         $location.path('/login');
-      }
+        return;
+      }*/
 
       $scope.completed = false;
       $scope.charName = '';
@@ -14,19 +15,16 @@
       $scope.type = '';
       var MAX_ROWS_DISPLAYED = 150;
 
-
-      if( Auth.isLoggedIn() ) {
-        $scope.clusters = Clusters
-          .query(function (clusters) {
-            if ($routeParams.clusterId) {
-              $scope.cluster = _.find(clusters, function (cluster) {
-                return cluster.cluster_name == $routeParams.clusterId;
-              });
-            }
-          }, function (response) {
-            $scope.errorMsg = true;
-          });
-      }
+      $scope.clusters = Clusters
+        .query(function (clusters) {
+          if ($routeParams.clusterId) {
+            $scope.cluster = _.find(clusters, function (cluster) {
+              return cluster.cluster_name == $routeParams.clusterId;
+            });
+          }
+        }, function (response) {
+          $scope.errorMsg = true;
+        });
 
       if ($location.path().indexOf('/search/g') >= 0) {
         $scope.guildName = $routeParams.searchStr;

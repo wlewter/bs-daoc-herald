@@ -6,8 +6,7 @@
       'ngCookies',
       'ngResource',
       'ngSanitize',
-      'ngRoute',
-      'ngAnimate'
+      'ngRoute'
     ])
     .config(function ($routeProvider, $httpProvider) {
       $routeProvider
@@ -43,14 +42,11 @@
       $httpProvider.interceptors.push(['$q', '$location', function($q, $location) {
         return {
           'responseError': function(response) {
-            console.log('interceptor error: ' + response.status);
             if(response.status === 401) {
-              console.log('redirecting to /login');
-              $location.path('/login');
+              window.location.href='./logout.html';
               return $q.reject(response);
             }
             else {
-              console.log('unhandled error');
               return $q.reject(response);
             }
           }

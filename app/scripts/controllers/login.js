@@ -9,10 +9,10 @@
       };
 
       $scope.login = function() {
-        //if( !$scope.username || !$scope.password ) {
-        //  alert('enter a username and password');
-        //  return;
-        //}
+        if( !$scope.username || !$scope.password ) {
+          return;
+        }
+
         Auth.setCredentials($scope.username, $scope.password);
       };
 

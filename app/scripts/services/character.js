@@ -2,9 +2,9 @@
   'use strict';
 
   angular.module('bsDaocHeraldApp')
-    .factory('Character', function ($resource, BASE_URL, $cookieStore) {
+    .factory('Character', function ($resource, BASE_URL, $rootScope) {
       return $resource(BASE_URL + '/character/info/:charId', {}, {
-        query: {method: 'GET', params: {}, isArray: false, headers: { 'Authorization': 'Basic ' + $cookieStore.get('authdata') }}
+        query: {method: 'GET', params: {}, isArray: false, headers: { 'Authorization': 'Basic ' + $rootScope.authData }}
       });
     });
 
