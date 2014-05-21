@@ -1,5 +1,5 @@
 
-<div id="main" class="main region grid16-16">
+<div id="main" class="main region grid16-16" ng-init="initAuth()">
     <div id="main-inner" class="main-inner inner clearfix">
 
         <!-- main group: width = grid_width - sidebar_first_width -->
@@ -13,8 +13,8 @@
                     <div class="content-main-top"></div>
                     <div class="content-main-mid">
                         <div class="main-content">
-                            <label for="username">Username:</label><input class="char-name" placeholder="Username" type="text" id="username" name="username" value="{{username}}"><br/>
-                            <label for="password">Password:</label><input class="char-name" placeholder="Password" type="password" id="password" name="password" value="{{password}}"><br/>
+                            <label for="username">Username:</label><input class="char-name" placeholder="Username" type="text" id="username" name="username" ng-model="username"><br/>
+                            <label for="password">Password:</label><input class="char-name" placeholder="Password" type="password" id="password" name="password" ng-model="password"><br/>
                             <button ng-click="login()">Login</button>
                         </div>
                     <div class="content-main-bot"></div>

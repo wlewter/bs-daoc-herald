@@ -9,7 +9,7 @@
       'ngRoute',
       'ngAnimate'
     ])
-    .config(function ($routeProvider) {
+    .config(function ($routeProvider, $httpProvider) {
       $routeProvider
         .when('/search', {
           templateUrl: 'views/search.html',
@@ -36,10 +36,29 @@
           controller: 'LoginCtrl'
         })
         .otherwise({
-          redirectTo: '/search'
+          redirectTo: '/login'
         });
+
+      // Intercept 401s and redirect you to login
+      $httpProvider.interceptors.push(['$q', '$location', function($q, $location) {
+        return {
+          'responseError': function(response) {
+            console.log('interceptor error: ' + response.status);
+            if(response.status === 401) {
+              console.log('redirecting to /login');
+              $location.path('/login');
+              return $q.reject(response);
+            }
+            else {
+              console.log('unhandled error');
+              return $q.reject(response);
+            }
+          }
+        };
+      }]);
     })
     .constant('BASE_URL', 'http://web_dev1.broadsword.com:8090')
     .constant('REALM', ['Unknown', 'Albion', 'Midgard', 'Hibernia']);
+
 
 }());
