@@ -4,13 +4,16 @@
   angular.module('bsDaocHeraldApp')
     .controller('GuildCtrl', function ($scope, $routeParams, Guild, Roster, REALM, $location, LastOn, Clusters) {
 
-      /*if( !Auth.isLoggedIn() ) {
-        $location.path('/login');
-        return;
-      }*/
+      $scope.sortOptions = [
+        { name: 'LEVEL', value: 'Level' },
+        { name: 'CLASS', value: 'Class' },
+        { name: 'NAME',  value: 'Name'  },
+        { name: 'RANK',  value: 'Guild Rank' },
+        { name: 'REALM_POINTS', value: 'Realm Points'}
+      ];
 
       $scope.completed = false;
-      var searchOptions = $location.search();
+      //var searchOptions = $location.search();
 
       /* search stuff */
       $scope.charName = '';
@@ -56,8 +59,9 @@
       $scope.showAlliance = true;
       $scope.hasNext = true;
 
-      $scope.sortBy = searchOptions.sortBy || 'LEVEL';
-      $scope.pageNumber = searchOptions.pageNumber || 0;
+      $scope.sortBy = { name: $scope.sortOptions[0].name};
+
+      $scope.pageNumber = 0;
 
       $scope.guildData = Guild.query({guildId: $routeParams.guildId}, function (guildData) {
 
@@ -71,26 +75,27 @@
           }
         }
 
-        $scope.getRoster(guildData.guild_web_id, $scope.pageNumber, $scope.sortBy);
+        $scope.getRoster(guildData.guild_web_id, $scope.pageNumber, $scope.sortBy.name);
 
       }, function( response ) {
         $scope.completed = true;
         $scope.errorMsg = true;
       });
 
+
       $scope.sortByChange = function () {
         $scope.pageNumber = 0;
-        $scope.getRoster($scope.guildData.guild_web_id, $scope.pageNumber, $scope.sortBy);
+        $scope.getRoster($scope.guildData.guild_web_id, $scope.pageNumber, $scope.sortBy.name);
       };
 
       $scope.nextPage = function () {
         ++$scope.pageNumber;
-        $scope.getRoster($scope.guildData.guild_web_id, $scope.pageNumber, $scope.sortBy);
+        $scope.getRoster($scope.guildData.guild_web_id, $scope.pageNumber, $scope.sortBy.name);
       };
 
       $scope.prevPage = function () {
         --$scope.pageNumber;
-        $scope.getRoster($scope.guildData.guild_web_id, $scope.pageNumber, $scope.sortBy);
+        $scope.getRoster($scope.guildData.guild_web_id, $scope.pageNumber, $scope.sortBy.name);
       };
 
 
