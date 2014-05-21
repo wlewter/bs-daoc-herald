@@ -55,7 +55,8 @@
 
 
     })
-    .constant('BASE_URL', 'http://web_dev1.broadsword.com:8090')
+    //.constant('BASE_URL', 'http://web_dev1.broadsword.com:8090')
+    .constant('BASE_URL', 'https://herald-api.dev.broadsword.com')
     .constant('REALM', ['Unknown', 'Albion', 'Midgard', 'Hibernia'])
     .run( function($rootScope, $cookieStore) {
       $rootScope.authData = $cookieStore.get('authdata');
