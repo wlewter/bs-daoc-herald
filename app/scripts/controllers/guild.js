@@ -62,6 +62,7 @@
       $scope.sortBy = { name: $scope.sortOptions[0].name};
 
       $scope.pageNumber = 0;
+      $scope.perPage = 50;
 
       $scope.guildData = Guild.query({guildId: $routeParams.guildId}, function (guildData) {
 
@@ -75,7 +76,7 @@
           }
         }
 
-        $scope.getRoster(guildData.guild_web_id, $scope.pageNumber, $scope.sortBy.name);
+        $scope.getRoster(guildData.guild_web_id, $scope.pageNumber, $scope.sortBy.name, $scope.perPage);
 
       }, function( response ) {
         $scope.completed = true;
@@ -85,22 +86,22 @@
 
       $scope.sortByChange = function () {
         $scope.pageNumber = 0;
-        $scope.getRoster($scope.guildData.guild_web_id, $scope.pageNumber, $scope.sortBy.name);
+        $scope.getRoster($scope.guildData.guild_web_id, $scope.pageNumber, $scope.sortBy.name, $scope.perPage);
       };
 
       $scope.nextPage = function () {
         ++$scope.pageNumber;
-        $scope.getRoster($scope.guildData.guild_web_id, $scope.pageNumber, $scope.sortBy.name);
+        $scope.getRoster($scope.guildData.guild_web_id, $scope.pageNumber, $scope.sortBy.name, $scope.perPage);
       };
 
       $scope.prevPage = function () {
         --$scope.pageNumber;
-        $scope.getRoster($scope.guildData.guild_web_id, $scope.pageNumber, $scope.sortBy.name);
+        $scope.getRoster($scope.guildData.guild_web_id, $scope.pageNumber, $scope.sortBy.name, $scope.perPage);
       };
 
 
-      $scope.getRoster = function (guildId, pageNumber, sortType) {
-        $scope.rosterData = Roster.query({guildId: guildId, pageNumber: pageNumber, sortType: sortType}, function (rosterData) {
+      $scope.getRoster = function (guildId, pageNumber, sortType, perPage) {
+        $scope.rosterData = Roster.query({guildId: guildId, pageNumber: pageNumber, sortType: sortType, perPage: perPage}, function (rosterData) {
           if (rosterData.roster && rosterData.roster.length > 0) {
 
             LastOn.query(function(laston) {
