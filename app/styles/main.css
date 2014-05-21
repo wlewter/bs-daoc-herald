@@ -335,3 +335,21 @@ a.prev:hover, a.next:hover {
 .toggle {
     cursor: pointer;
 }
+
+.small-beta {
+    font-family: "kingthings_exeterregular";
+    font-weight: bold;
+    font-size: 20px;
+    margin: 0;
+    float: right;
+}
+
+.large-beta {
+    font-family: "kingthings_exeterregular";
+    font-weight: bold;
+    font-size: 40px;
+    position: absolute;
+    top: 45px;
+    left: 450px;
+    margin: auto;
+}
