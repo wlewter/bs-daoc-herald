@@ -1,6 +1,4 @@
 
-<div data-ng-show="completed">
-
 <div id="main" class="main region grid16-16">
 <div id="main-inner" class="main-inner inner clearfix">
 
@@ -24,7 +22,10 @@
             <div class="content-mid">
                 <div class="content-main-top"></div>
                 <div class="content-main-mid">
-                    <div class="main-content">
+                    <div class="main-content" data-ng-show="!completed">
+                        Loading, please wait...
+                    </div>
+                    <div class="main-content" data-ng-show="completed">
 
                         <div data-ng-if="errorMsg">
                             <p class="heading">Down for maintenance. Try again later.</p>
@@ -140,4 +141,3 @@
     </div><!-- /main-inner -->
     </div>
 </div><!-- /main -->
-</div>
