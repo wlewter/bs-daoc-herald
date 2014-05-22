@@ -1,3 +1,4 @@
+
 <div data-ng-show="completed">
 
 <div id="main" class="main region grid16-16">
@@ -28,7 +29,6 @@
                         <div data-ng-if="errorMsg">
                             <p class="heading">Down for maintenance. Try again later.</p>
                         </div>
-
                         <div id="guild-results" data-ng-if="!errorMsg">
                             <div class="guild-left">
                                 <div id="guild-info">
@@ -73,6 +73,9 @@
                                         <td class="heading heading-row">Class</td>
                                         <td class="heading heading-row">Guild Rank</td>
                                         <td class="heading heading-row">Realm Points</td>
+                                    </tr>
+                                    <tr data-ng-if="loadingRoster">
+                                        <td colspan="4">Loading, please wait...</td>
                                     </tr>
                                     <tr data-ng-repeat="charData in rosterData.roster">
                                         <td><a href="#/character/{{charData.character_web_id}}" title="{{charData.name}}">{{charData.name | truncate: 20}}</a></td>

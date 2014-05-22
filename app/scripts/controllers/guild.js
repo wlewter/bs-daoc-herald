@@ -101,6 +101,7 @@
 
 
       $scope.getRoster = function (guildId, pageNumber, sortType, perPage) {
+        $scope.loadingRoster = true;
         $scope.rosterData = Roster.query({guildId: guildId, pageNumber: pageNumber, sortType: sortType, perPage: perPage}, function (rosterData) {
           if (rosterData.roster && rosterData.roster.length > 0) {
 
@@ -119,8 +120,10 @@
             $scope.hasNext = false;
           }
 
+          $scope.loadingRoster = false;
           $scope.completed = true;
         }, function( response ) {
+          $scope.loadingRoster = false;
           $scope.completed = true;
           $scope.errorMsg = true;
         });

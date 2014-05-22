@@ -53,7 +53,6 @@
         };
       }]);
 
-
     })
     //.constant('BASE_URL', 'http://web_dev1.broadsword.com:8090')
     .constant('BASE_URL', 'https://herald-api.dev.broadsword.com')

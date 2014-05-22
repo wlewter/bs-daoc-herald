@@ -1,5 +1,6 @@
 <div data-ng-show="completed">
 
+
 <div id="main" class="main region grid16-16">
     <div id="main-inner" class="main-inner inner clearfix">
 
@@ -45,6 +46,9 @@
                                     <td class="heading heading-row">Guild</td>
                                     <td class="heading heading-row">Server</td>
                                 </tr>
+                                <tr data-ng-if="loading" class="number">
+                                    <td colspan="6">Loading, please wait...</td>
+                                </tr>
                                 <tr data-ng-repeat="result in chars.results" class="number">
                                     <td>{{$index + 1}}.</td>
                                     <td><a href="#/character/{{result.character_web_id}}">{{result.name}}</a></td>
@@ -62,6 +66,9 @@
                                     <td class="heading heading-row">Guild Name</td>
                                     <td class="heading heading-row">Server</td>
                                     <!--<td class="heading heading-row">Emblem</td>-->
+                                </tr>
+                                <tr data-ng-if="loading" class="number">
+                                    <td colspan="3">Loading, please wait...</td>
                                 </tr>
                                 <tr data-ng-repeat="result in guilds.results">
                                     <td>{{$index + 1}}.</td>

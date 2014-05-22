@@ -23,10 +23,12 @@
             });
           }
         }, function (response) {
+          $scope.completed = true;
           $scope.errorMsg = true;
         });
 
       if ($location.path().indexOf('/search/g') >= 0) {
+        $scope.loading = true;
         $scope.guildName = $routeParams.searchStr;
         $scope.charName = '';
         $scope.type = 'guild';
@@ -35,22 +37,29 @@
             guilds.results.splice( (guilds.results.length - MAX_ROWS_DISPLAYED) * -1, Number.MAX_VALUE);
           }
           $scope.completed = true;
+          $scope.loading = false;
         }, function( response ) {
+          $scope.loading = false;
+          $scope.completed = true;
           $scope.errorMsg = true;
         });
 
       } else if ($location.path().indexOf('/search/c') >= 0) {
-
+        $scope.loading = true;
         $scope.charName = $routeParams.searchStr;
         $scope.guildName = '';
         $scope.type = 'char';
+
         $scope.chars = Charsearch.query({searchStr: $scope.charName, clusterId: $routeParams.clusterId}, function(chars) {
 
           if( chars.results.length > MAX_ROWS_DISPLAYED ) {
             chars.results.splice( (chars.results.length - MAX_ROWS_DISPLAYED) * -1, Number.MAX_VALUE);
           }
           $scope.completed = true;
+          $scope.loading = false;
         }, function( response ) {
+          $scope.loading = false;
+          $scope.completed = true;
           $scope.errorMsg = true;
         });
 
@@ -68,7 +77,6 @@
 
 
       $scope.searchGuild = function () {
-
         if ( $scope.guildName !== '' ) {
           $location.path('/search/g/' + $scope.guildName);
         }
