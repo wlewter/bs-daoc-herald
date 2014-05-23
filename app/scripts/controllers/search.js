@@ -70,14 +70,14 @@
           return;
         }
 
-        if ( $scope.charName !== '' ) {
+        if ( $scope.charName !== '' && $scope.charName.length >= 3) {
           $location.path('/search/c/' + $scope.cluster.cluster_name + '/' + $scope.charName);
         }
       };
 
 
       $scope.searchGuild = function () {
-        if ( $scope.guildName !== '' ) {
+        if ( $scope.guildName !== '' && $scope.guildName.length >= 3) {
           $location.path('/search/g/' + $scope.guildName);
         }
       };
