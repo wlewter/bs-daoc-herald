@@ -20,6 +20,10 @@
           $scope.cluster = _.find(clusters, function (cluster) {
             return cluster.cluster_name == $routeParams.clusterId;
           });
+        } else {
+          $scope.cluster = _.find(clusters, function (cluster) {
+            return cluster.cluster_name.toLowerCase() === 'ywain';
+          });
         }
       }, function( response ) {
         $scope.errorMsg = true;

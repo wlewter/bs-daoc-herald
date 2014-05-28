@@ -74,6 +74,7 @@
                                         <td class="heading heading-row">Class</td>
                                         <td class="heading heading-row">Guild Rank</td>
                                         <td class="heading heading-row">Realm Points</td>
+                                        <td class="heading heading-row">Last Seen</td>
                                     </tr>
                                     <tr data-ng-if="loadingRoster">
                                         <td colspan="4">Loading, please wait...</td>
@@ -83,6 +84,7 @@
                                         <td>{{charData.level}} / {{charData.race}} / {{charData.class_name}}</td>
                                         <td>{{charData.guild_rank}}</td>
                                         <td>{{charData.realm_points | number}}</td>
+                                        <td>{{charData.laston}}</td>
                                     </tr>
                                 </table>
 
