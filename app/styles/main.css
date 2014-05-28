@@ -336,6 +336,20 @@ a.prev:hover, a.next:hover {
     cursor: pointer;
 }
 
+table.online-meter{
+    border: none;
+    padding: 0;
+    margin: 0;
+    width: 80%;
+}
+
+table.online-meter-sub{
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+
+
 .small-beta {
     font-family: "kingthings_exeterregular";
     font-weight: bold;

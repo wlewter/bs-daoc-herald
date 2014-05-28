@@ -53,8 +53,8 @@
 
                                     <div class="guild-info-2">
                                         <p><strong>Guild Realm Points</strong> - {{guildData.realm_war_overall.realm_points | number}}</p>
-                                        <p><strong>Outpost Claimed</strong> - <span data-ng-if="guildData.claimed_outpost !== 0">{{guildData.claimed_outpost}}</span>
-                                           <span data-ng-if="guildData.claimed_outpost === 0">None</span></p>
+                                        <!--<p><strong>Outpost Claimed</strong> - <span data-ng-if="guildData.claimed_outpost !== 0">{{guildData.claimed_outpost}}</span>
+                                           <span data-ng-if="guildData.claimed_outpost === 0">None</span></p>-->
                                         <p><strong>Membership</strong> - {{guildData.member_characters}} active characters played by {{guildData.member_accounts}} members</p>
                                     </div>
                                 </div>
@@ -81,15 +81,46 @@
                                     </tr>
                                     <tr data-ng-repeat="charData in rosterData.roster">
                                         <td><a href="#/character/{{charData.character_web_id}}" title="{{charData.name}}">{{charData.name | truncate: 20}}</a></td>
-                                        <td>{{charData.level}} / {{charData.race}} / {{charData.class_name}}</td>
+                                        <td>{{charData.level}}/{{charData.race}}/{{charData.class_name}}</td>
                                         <td>{{charData.guild_rank}}</td>
                                         <td>{{charData.realm_points | number}}</td>
-                                        <td>{{charData.laston}}</td>
+                                        <td><div style="background: {{lastseenColors[charData.last_on_range]}}; height: 38px; width: 38px;"><img title="{{charData.laston}}" style="padding-top: 3px; padding-left: 3px" src="images/lastseen/b_emblem_010_new.gif"></div></td>
                                     </tr>
                                 </table>
 
                                 <a data-ng-if="pageNumber > 0" class="toggle prev" data-ng-click="prevPage()">&lt;&lt; Prev</a>
                                 <a data-ng-if="hasNext" class="toggle next" data-ng-click="nextPage()">Next &gt;&gt;</a>
+
+                                <br/>
+                                <br/>
+                                <br/>
+                                <table class="online-meter">
+                                    <tr>
+                                        <td class="heading">Online Meter</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <table class="online-meter-sub">
+                                                <tr>
+                                                    <td data-ng-repeat="color in lastseenColors">
+                                                        <div style="background: {{color}}; height: 38px; width: 38px;">
+                                                            <img style="padding-top: 3px; padding-left: 3px" src="images/lastseen/b_emblem_010_new.gif">
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td width="16%">Online recently</td>
+                                                    <td width="16%">Online within 7 days</td>
+                                                    <td width="16%">Online within 30 days</td>
+                                                    <td width="16%">Online within 90 days</td>
+                                                    <td width="16%">Inactive</td>
+                                                    <td width="16%">Unknown</td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </table>
+
 
                             </div>
 
@@ -123,7 +154,7 @@
                                     </tr>
                                     <tbody data-ng-if="leaderboard.show">
                                     <tr data-ng-repeat="char in leaderboard.entries">
-                                        <td><a href="#/character/{{char.character_web_id}}" title="{{char.name}}">{{char.name | truncate: 20}}</a><br/>{{char.level}} {{char.class_name}}</td>
+                                        <td><a href="#/character/{{char.character_web_id}}" title="{{char.name}}">{{char.name | truncate: 20}}</a><span data-ng-if="leaderboard.type==='Realm Point Holders'"><br/>{{char.level}} {{char.class_name}}</span></td>
                                         <td class="align-right">{{char.value | number}}</td>
                                     </tr>
                                     </tbody>

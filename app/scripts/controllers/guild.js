@@ -12,6 +12,15 @@
         { name: 'REALM_POINTS', value: 'Realm Points'}
       ];
 
+      $scope.lastseenColors = [
+        '#00a56b',
+        '#317bca',
+        '#f7d600',
+        '#ff9c29',
+        '#f03942',
+        '#ffffff'
+      ]
+
       $scope.completed = false;
       //var searchOptions = $location.search();
 
@@ -103,13 +112,12 @@
         $scope.getRoster($scope.guildData.guild_web_id, $scope.pageNumber, $scope.sortBy.name, $scope.perPage);
       };
 
-
       $scope.getRoster = function (guildId, pageNumber, sortType, perPage) {
         $scope.loadingRoster = true;
         $scope.rosterData = Roster.query({guildId: guildId, pageNumber: pageNumber, sortType: sortType, perPage: perPage}, function (rosterData) {
           if (rosterData.roster && rosterData.roster.length > 0) {
 
-            LastOn.query(function(laston) {
+            $scope.lastOn = LastOn.query(function(laston) {
               for(var i = 0; i < rosterData.roster.length; i++) {
                 rosterData.roster[i].laston = laston[rosterData.roster[i].last_on_range];
               }
