@@ -60,20 +60,18 @@
                                 </div>
 
                                 <div class="search-sort">
-                                    &nbsp;
-                                    Sort By: &nbsp;
-                                    <select data-ng-model="sortBy.name" data-ng-change="sortByChange()" ng-options="option.name as option.value for option in sortOptions">
-                                    </select>
+                                    &nbsp; &nbsp;
                                     <a data-ng-if="pageNumber > 0" class="toggle prev" data-ng-click="prevPage()">&lt;&lt; Prev</a>
                                     <a data-ng-if="hasNext" class="toggle next" data-ng-click="nextPage()">Next &gt;&gt;</a>
                                 </div>
 
                                 <table>
                                     <tr class="heading-row">
-                                        <td class="heading heading-row">Player Name</td>
-                                        <td class="heading heading-row">Class</td>
-                                        <td class="heading heading-row">Guild Rank</td>
-                                        <td class="heading heading-row">Realm Points</td>
+                                        <td title="Click to sort by name" data-ng-click="sortByChange('NAME')" class="heading heading-row toggle"><span data-ng-if="sortVal === 'NAME'">*</span>Player Name</td>
+                                        <td title="Click to sort by level" data-ng-click="sortByChange('LEVEL')" class="heading heading-row toggle"><span data-ng-if="sortVal === 'LEVEL'">*</span>Level</td>
+                                        <td title="Click to sort by class" data-ng-click="sortByChange('CLASS')" align="center" class="heading heading-row toggle"><span data-ng-if="sortVal === 'CLASS'">*</span>Class</td>
+                                        <td title="Click to sort by guild rank" data-ng-click="sortByChange('RANK')" class="heading heading-row toggle"><span data-ng-if="sortVal === 'RANK'">*</span>Guild Rank</td>
+                                        <td title="Click to sort by realm points" data-ng-click="sortByChange('REALM_POINTS')" class="heading heading-row toggle"><span data-ng-if="sortVal === 'REALM_POINTS'">*</span>Realm Points</td>
                                         <td class="heading heading-row">Last Seen</td>
                                     </tr>
                                     <tr data-ng-if="loadingRoster">
@@ -81,9 +79,10 @@
                                     </tr>
                                     <tr data-ng-repeat="charData in rosterData.roster">
                                         <td><a href="#/character/{{charData.character_web_id}}" title="{{charData.name}}">{{charData.name | truncate: 20}}</a></td>
-                                        <td>{{charData.level}}/{{charData.race}}/{{charData.class_name}}</td>
+                                        <td>{{charData.level}}</td>
+                                        <td>{{charData.race}} {{charData.class_name}}</td>
                                         <td>{{charData.guild_rank}}</td>
-                                        <td>{{charData.realm_points | number}}</td>
+                                        <td align="right">{{charData.realm_points | number}}</td>
                                         <td><div style="background: {{lastseenColors[charData.last_on_range]}}; height: 38px; width: 38px;"><img title="{{charData.laston}}" style="padding-top: 3px; padding-left: 3px" src="images/lastseen/b_emblem_010_new.gif"></div></td>
                                     </tr>
                                 </table>

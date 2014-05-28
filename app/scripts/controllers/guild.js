@@ -4,13 +4,13 @@
   angular.module('bsDaocHeraldApp')
     .controller('GuildCtrl', function ($scope, $routeParams, Guild, Roster, REALM, $location, LastOn, Clusters) {
 
-      $scope.sortOptions = [
+      /*$scope.sortOptions = [
         { name: 'LEVEL', value: 'Level' },
         { name: 'CLASS', value: 'Class' },
         { name: 'NAME',  value: 'Name'  },
         { name: 'RANK',  value: 'Guild Rank' },
         { name: 'REALM_POINTS', value: 'Realm Points'}
-      ];
+      ];*/
 
       $scope.lastseenColors = [
         '#00a56b',
@@ -19,7 +19,7 @@
         '#ff9c29',
         '#f03942',
         '#ffffff'
-      ]
+      ];
 
       $scope.completed = false;
       //var searchOptions = $location.search();
@@ -72,7 +72,8 @@
       $scope.showAlliance = true;
       $scope.hasNext = true;
 
-      $scope.sortBy = { name: $scope.sortOptions[0].name};
+      //$scope.sortBy = { name: $scope.sortOptions[0].name};
+      $scope.sortVal = 'NAME';
 
       $scope.pageNumber = 0;
       $scope.perPage = 50;
@@ -89,7 +90,7 @@
           }
         }
 
-        $scope.getRoster(guildData.guild_web_id, $scope.pageNumber, $scope.sortBy.name, $scope.perPage);
+        $scope.getRoster(guildData.guild_web_id, $scope.pageNumber, $scope.sortVal, $scope.perPage);
 
       }, function( response ) {
         $scope.completed = true;
@@ -97,19 +98,19 @@
       });
 
 
-      $scope.sortByChange = function () {
+      /*$scope.sortByChange = function () {
         $scope.pageNumber = 0;
         $scope.getRoster($scope.guildData.guild_web_id, $scope.pageNumber, $scope.sortBy.name, $scope.perPage);
-      };
+      };*/
 
       $scope.nextPage = function () {
         ++$scope.pageNumber;
-        $scope.getRoster($scope.guildData.guild_web_id, $scope.pageNumber, $scope.sortBy.name, $scope.perPage);
+        $scope.getRoster($scope.guildData.guild_web_id, $scope.pageNumber, $scope.sortVal, $scope.perPage);
       };
 
       $scope.prevPage = function () {
         --$scope.pageNumber;
-        $scope.getRoster($scope.guildData.guild_web_id, $scope.pageNumber, $scope.sortBy.name, $scope.perPage);
+        $scope.getRoster($scope.guildData.guild_web_id, $scope.pageNumber, $scope.sortVal, $scope.perPage);
       };
 
       $scope.getRoster = function (guildId, pageNumber, sortType, perPage) {
@@ -139,6 +140,13 @@
           $scope.completed = true;
           $scope.errorMsg = true;
         });
+      };
+
+
+      $scope.sortByChange = function(sortVal) {
+        $scope.sortVal = sortVal;
+        $scope.pageNumber = 0;
+        $scope.getRoster($scope.guildData.guild_web_id, $scope.pageNumber, $scope.sortVal, $scope.perPage);
       };
 
     });
