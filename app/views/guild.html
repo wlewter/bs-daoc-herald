@@ -152,7 +152,7 @@
                                         </td>
                                     </tr>
                                     <tbody data-ng-if="leaderboard.show">
-                                    <tr data-ng-repeat="char in leaderboard.entries">
+                                    <tr data-ng-repeat="char in leaderboard.entries" data-ng-show="char.value > 2">
                                         <td><a href="#/character/{{char.character_web_id}}" title="{{char.name}}">{{char.name | truncate: 20}}</a><span data-ng-if="leaderboard.type==='Realm Point Holders'"><br/>{{char.level}} {{char.class_name}}</span></td>
                                         <td class="align-right">{{char.value | number}}</td>
                                     </tr>
