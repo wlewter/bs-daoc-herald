@@ -2,6 +2,10 @@
   "name": "bsdaocherald",
   "version": "1.0.0",
   "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/wlewter/bs-daoc-herald.git"
+  },
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-autoprefixer": "~0.4.0",
