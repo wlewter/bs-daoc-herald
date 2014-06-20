@@ -67,7 +67,7 @@ input[type=submit]:hover {
     color: #e9cf9d;
 }
 select {
-    background: #a99875 url('../images/select-dropdown.png') no-repeat center right;
+    background: #a99875 url('images/select-dropdown.png') no-repeat center right;
     border: 1px solid #32271f;
     padding: 10px 65px 7px 8px;
     font-size: 12px;
@@ -75,6 +75,19 @@ select {
     border-radius: 0;
     width: 245px;
     -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 0.01px;
+    text-overflow: '';
+
+
+    /*background: #a99875 url('../images/select-dropdown.png') no-repeat center right;
+    border: 1px solid #32271f;
+    padding: 10px 65px 7px 8px;
+    font-size: 12px;
+    color: #322917;
+    border-radius: 0;
+    width: 245px;
+    -webkit-appearance: none;*/
 }
 .char-name {
     width: 160px;
