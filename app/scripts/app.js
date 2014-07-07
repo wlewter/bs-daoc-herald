@@ -8,7 +8,7 @@
       'ngSanitize',
       'ngRoute'
     ])
-    .config(function ($routeProvider, $httpProvider) {
+    .config(function ($routeProvider/*, $httpProvider*/) {
       $routeProvider
         .when('/search', {
           templateUrl: 'views/search.html',
@@ -30,16 +30,16 @@
           templateUrl: 'views/character.html',
           controller: 'CharacterCtrl'
         })
-        .when('/login', {
+        /*.when('/login', {
           templateUrl: 'views/login.html',
           controller: 'LoginCtrl'
-        })
+        })*/
         .otherwise({
-          redirectTo: '/login'
+          redirectTo: '/search'
         });
 
       // Intercept 401s and redirect you to login
-      $httpProvider.interceptors.push(['$q', '$location', function($q, $location) {
+      /*$httpProvider.interceptors.push(['$q', '$location', function($q, $location) {
         return {
           'responseError': function(response) {
             if(response.status === 401) {
@@ -51,15 +51,16 @@
             }
           }
         };
-      }]);
+      }]);*/
 
     })
     //.constant('BASE_URL', 'http://web_dev1.broadsword.com:8090')
-    .constant('BASE_URL', 'https://heraldsearch-dev.broadsword.com')
-    .constant('REALM', ['Unknown', 'Albion', 'Midgard', 'Hibernia'])
-    .run( function($rootScope, $cookieStore) {
+    //.constant('BASE_URL', 'https://heraldsearch-dev.broadsword.com')
+    .constant('BASE_URL', 'http://api.camelotherald.com')
+    .constant('REALM', ['Unknown', 'Albion', 'Midgard', 'Hibernia']);
+    /*.run( function($rootScope, $cookieStore) {
       $rootScope.authData = $cookieStore.get('authdata');
-    });
+    });*/
 
 
 }());
